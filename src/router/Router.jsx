@@ -14,6 +14,10 @@ import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
 import InstructorRoute from "../routes/InstructorRoute";
 import AddCourse from "../pages/Dashboard/Instructor/AddCourse";
 import MyCreatedCourses from "../pages/Dashboard/Instructor/MyCreatedCourses";
+import ApplyInstructor from "../pages/Dashboard/Instructor/ApplyInstructor";
+import InstructorRequestList from "../pages/Dashboard/Admin/InstructorRequestLists";
+import ApprovedInstructors from "../pages/Dashboard/Admin/ApprovedInstructors";
+
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +28,7 @@ export const router = createBrowserRouter([
                 index: true,
                 Component: Home
             },
-            
+
             {
                 path: 'login',
                 Component: Login
@@ -32,6 +36,11 @@ export const router = createBrowserRouter([
             {
                 path: '/register',
                 Component: Register
+            },
+
+            {
+                path: 'applyInstructor',
+                Component: ApplyInstructor
             }
         ]
     },
@@ -50,12 +59,21 @@ export const router = createBrowserRouter([
             },
             //only admim routes
             {
-                path:'manage-courses',
+                path: 'manage-courses',
                 element: <AdminRoute><ManageCourses></ManageCourses></AdminRoute>
             },
             {
-                path:'manage-users',
-                element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+                path: 'manage-users',
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            {
+                path: 'instructor-request-lists',
+                element: <AdminRoute><InstructorRequestList></InstructorRequestList></AdminRoute>
+
+            },
+            {
+                path:'approved-instructors',
+            element:<AdminRoute> <ApprovedInstructors></ApprovedInstructors></AdminRoute>
             },
             // instructor only route
             {
@@ -69,9 +87,9 @@ export const router = createBrowserRouter([
         ]
 
     },
-    
+
     {
-        path:'*',
+        path: '*',
         Component: NotFound
     }
 ])

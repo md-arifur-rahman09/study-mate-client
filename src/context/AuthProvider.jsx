@@ -32,9 +32,10 @@ const AuthProvider = ({ children }) => {
     };
 
     // Update profile
-    const updateUserProfile = () => {
-        return updateProfile(auth.currentUser,);
+    const updateUserProfile = (profile) => {
+        return updateProfile(auth.currentUser, profile);
     };
+
 
     // Logout
     const logout = () => {

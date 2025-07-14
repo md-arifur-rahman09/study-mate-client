@@ -74,6 +74,26 @@ const DashboardLayout = () => {
                                     Manage Courses
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/instructor-request-lists"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                  Instructor request list
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/approved-instructors"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                Approved  Instructors
+                                </NavLink>
+                            </li>
                         </>
                     )}
 
