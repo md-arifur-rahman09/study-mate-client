@@ -11,6 +11,9 @@ import MyCourses from "../pages/Dashboard/MyCourses";
 import AdminRoute from "../routes/AdminRoute";
 import ManageCourses from "../pages/Dashboard/Admin/ManageCourses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
+import InstructorRoute from "../routes/InstructorRoute";
+import AddCourse from "../pages/Dashboard/Instructor/AddCourse";
+import MyCreatedCourses from "../pages/Dashboard/Instructor/MyCreatedCourses";
 
 export const router = createBrowserRouter([
     {
@@ -45,6 +48,7 @@ export const router = createBrowserRouter([
                 path: 'myCourses',
                 Component: MyCourses
             },
+            //only admim routes
             {
                 path:'manage-courses',
                 element: <AdminRoute><ManageCourses></ManageCourses></AdminRoute>
@@ -52,6 +56,15 @@ export const router = createBrowserRouter([
             {
                 path:'manage-users',
                 element:<AdminRoute><ManageUsers></ManageUsers></AdminRoute>
+            },
+            // instructor only route
+            {
+                path: 'add-course',
+                element: <InstructorRoute><AddCourse></AddCourse></InstructorRoute>
+            },
+            {
+                path: 'my-courses',
+                element: <InstructorRoute> <MyCreatedCourses></MyCreatedCourses></InstructorRoute>
             }
         ]
 
