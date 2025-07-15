@@ -22,7 +22,7 @@ const Navbar = () => {
     const navLinks = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/applyInstructor">Apply Instructor</NavLink></li>
+            <li><NavLink to="/applyTutor">Apply Tutor</NavLink></li>
             {user ? (
                 <>
                     <li><NavLink to="/dashboard">Dashboard</NavLink></li>

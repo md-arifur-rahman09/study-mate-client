@@ -6,7 +6,7 @@ import useRole from "../hooks/useRole";
 
 const DashboardLayout = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { role } =useRole();
+    const { role } = useRole();
 
     const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -27,29 +27,35 @@ const DashboardLayout = () => {
                                 isActive ? "text-primary font-bold" : "text-gray-700"
                             }
                         >
-                           Home
+                            Home
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink
-                            to="/dashboard/myProfile"
-                            className={({ isActive }) =>
-                                isActive ? "text-primary font-bold" : "text-gray-700"
-                            }
-                        >
-                            My Profile
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/dashboard/myCourses"
-                            className={({ isActive }) =>
-                                isActive ? "text-primary font-bold" : "text-gray-700"
-                            }
-                        >
-                            My Courses
-                        </NavLink>
-                    </li>
+                    {/* student role menu */}
+
+                    {role === "student" && (
+                        <>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/myProfile"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                    My Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/myCourses"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                    My Courses
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
 
                     {/* Role-Based Menu */}
                     {role === "admin" && (
@@ -66,57 +72,57 @@ const DashboardLayout = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/manage-courses"
+                                    to="/dashboard/all-study-sessions"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                    Manage Courses
+                                   All Study Sessions
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/instructor-request-lists"
+                                    to="/dashboard/tutor-request-lists"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                  Instructor request list
+                                    Tutor request list
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/approved-instructors"
+                                    to="/dashboard/approved-tutors"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                Approved  Instructors
+                                    Approved  Tutors
                                 </NavLink>
                             </li>
                         </>
                     )}
-
-                    {role === "instructor" && (
+                    {/* tutor */}
+                    {role === "tutor" && (
                         <>
                             <li>
                                 <NavLink
-                                    to="/dashboard/add-course"
+                                    to="/dashboard/create-study-session"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                    Add Course
+                                    Create Study Session
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/my-courses"
+                                    to="/dashboard/my-study-sessions"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                    My Created Courses
+                                    My Study Sessions
                                 </NavLink>
                             </li>
                         </>

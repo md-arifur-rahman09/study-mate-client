@@ -2,18 +2,18 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 
-const ApprovedInstructors = () => {
-    const { data: instructors = [], isPending, error,refetch } = useQuery({
-        queryKey: ['approved-instructors'],
+const ApprovedTutors = () => {
+    const { data: tutors = [], isPending, error,refetch } = useQuery({
+        queryKey: ['approved-tutors'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/approved-instructors");
+            const res = await axios.get("http://localhost:5000/approved-tutors");
             return res.data;
         }
     });
 
     const handleDeactivate = async (id) => {
         const confirm = await Swal.fire({
-            title: "Deactivate this instructor?",
+            title: "Deactivate this tutor?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Yes, deactivate",
@@ -22,9 +22,9 @@ const ApprovedInstructors = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const res = await axios.patch(`http://localhost:5000/instructor-deactivate/${id}`);
+            const res = await axios.patch(`http://localhost:5000/tutor-deactivate/${id}`);
             if (res.data.modifiedCount > 0) {
-                Swal.fire("Success", "Instructor deactivated", "success");
+                Swal.fire("Success", "Tutor deactivated", "success");
                 refetch();
             }
         } catch (err) {
@@ -34,11 +34,11 @@ const ApprovedInstructors = () => {
 
 
     if (isPending) return <p className="text-center py-10">Loading...</p>;
-    if (error) return <p className="text-center text-red-500 py-10">Error loading instructors</p>;
+    if (error) return <p className="text-center text-red-500 py-10">Error loading tutors</p>;
 
     return (
         <div className="p-6">
-            <h2 className="text-2xl font-semibold mb-4 text-center text-primary">Approved Instructors</h2>
+            <h2 className="text-2xl font-semibold mb-4 text-center text-primary">Approved Tutors</h2>
 
             <div className="overflow-x-auto">
                 <table className="table w-full bg-white shadow rounded">
@@ -55,7 +55,7 @@ const ApprovedInstructors = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {instructors.map((inst, index) => (
+                        {tutors.map((inst, index) => (
                             <tr key={inst._id} className="hover:bg-gray-100 text-sm">
                                 <td>{index + 1}</td>
                                 <td>{inst.name}</td>
@@ -81,12 +81,12 @@ const ApprovedInstructors = () => {
                         ))}
                     </tbody>
                 </table>
-                {instructors.length === 0 && (
-                    <p className="text-center py-10 text-gray-500">No approved instructors yet.</p>
+                {tutors.length === 0 && (
+                    <p className="text-center py-10 text-gray-500">No approved tutors yet.</p>
                 )}
             </div>
         </div>
     );
 };
 
-export default ApprovedInstructors;
+export default ApprovedTutors;

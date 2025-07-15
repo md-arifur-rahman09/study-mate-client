@@ -11,12 +11,18 @@ import MyCourses from "../pages/Dashboard/MyCourses";
 import AdminRoute from "../routes/AdminRoute";
 import ManageCourses from "../pages/Dashboard/Admin/ManageCourses";
 import ManageUsers from "../pages/Dashboard/Admin/ManageUsers";
-import InstructorRoute from "../routes/InstructorRoute";
-import AddCourse from "../pages/Dashboard/Instructor/AddCourse";
-import MyCreatedCourses from "../pages/Dashboard/Instructor/MyCreatedCourses";
-import ApplyInstructor from "../pages/Dashboard/Instructor/ApplyInstructor";
-import InstructorRequestList from "../pages/Dashboard/Admin/InstructorRequestLists";
-import ApprovedInstructors from "../pages/Dashboard/Admin/ApprovedInstructors";
+
+
+import TutorRequestList from "../pages/Dashboard/Admin/TutorRequestLists";
+
+import TutorRoute from "../routes/InstructorRoute";
+
+
+import ApplyTutor from "../pages/Dashboard/tutor/ApplyTutor";
+import ApprovedTutors from "../pages/Dashboard/Admin/ApprovedTutors.jsx";
+import CreateStudySession from "../pages/Dashboard/tutor/CreateStudySession.jsx";
+import MyStudySessions from "../pages/Dashboard/tutor/MyStudySessions.jsx";
+import StudySessionList from "../pages/Dashboard/Admin/StudySessionList.jsx";
 
 
 export const router = createBrowserRouter([
@@ -39,8 +45,8 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: 'applyInstructor',
-                Component: ApplyInstructor
+                path: 'applyTutor',
+                Component: ApplyTutor
             }
         ]
     },
@@ -57,32 +63,32 @@ export const router = createBrowserRouter([
                 path: 'myCourses',
                 Component: MyCourses
             },
-            //only admim routes
+            //only admin routes
             {
-                path: 'manage-courses',
-                element: <AdminRoute><ManageCourses></ManageCourses></AdminRoute>
+                path: 'all-study-sessions',
+                element: <AdminRoute><StudySessionList></StudySessionList></AdminRoute>
             },
             {
                 path: 'manage-users',
                 element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
-                path: 'instructor-request-lists',
-                element: <AdminRoute><InstructorRequestList></InstructorRequestList></AdminRoute>
+                path: 'tutor-request-lists',
+                element: <AdminRoute><TutorRequestList></TutorRequestList></AdminRoute>
 
             },
             {
-                path:'approved-instructors',
-            element:<AdminRoute> <ApprovedInstructors></ApprovedInstructors></AdminRoute>
+                path:'approved-tutors',
+            element:<AdminRoute> <ApprovedTutors></ApprovedTutors></AdminRoute>
             },
-            // instructor only route
+            // turor only route
             {
-                path: 'add-course',
-                element: <InstructorRoute><AddCourse></AddCourse></InstructorRoute>
+                path: 'create-study-session',
+                element: <TutorRoute><CreateStudySession></CreateStudySession></TutorRoute>
             },
             {
-                path: 'my-courses',
-                element: <InstructorRoute> <MyCreatedCourses></MyCreatedCourses></InstructorRoute>
+                path: 'my-study-sessions',
+                element: <TutorRoute> <MyStudySessions></MyStudySessions></TutorRoute>
             }
         ]
 

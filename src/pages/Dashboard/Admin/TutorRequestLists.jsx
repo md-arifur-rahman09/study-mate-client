@@ -3,11 +3,11 @@ import axios from "axios";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const InstructorRequestList = () => {
+const TutorRequestList = () => {
     const { data: requests = [], refetch, isLoading } = useQuery({
-        queryKey: ['instructor-requests'],
+        queryKey: ['tutor-requests'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/instructor-requests?status=pending");
+            const res = await axios.get("http://localhost:5000/tutor-requests?status=pending");
             return res.data;
         }
     });
@@ -23,7 +23,7 @@ const InstructorRequestList = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const res = await axios.patch(`http://localhost:5000/instructor-requests/${id}`, {
+            const res = await axios.patch(`http://localhost:5000/tutor-requests/${id}`, {
                 status: action
             });
 
@@ -40,7 +40,7 @@ const InstructorRequestList = () => {
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Pending Instructor Requests</h2>
+            <h2 className="text-2xl font-bold mb-4">Pending Tutor Requests</h2>
             {requests.length === 0 ? (
                 <p className="text-gray-500">No pending requests.</p>
             ) : (
@@ -98,4 +98,4 @@ const InstructorRequestList = () => {
     );
 };
 
-export default InstructorRequestList;
+export default TutorRequestList;

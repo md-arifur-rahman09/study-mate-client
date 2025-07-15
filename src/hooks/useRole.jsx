@@ -14,7 +14,7 @@ const useRole = () => {
       const res = await axios.get(`http://localhost:5000/users/role/${user.email}`, {
         withCredentials: true
       });
-      return res.data; // expected { role: 'admin' } or 'instructor' or 'student'
+      return res.data; // expected { role: 'admin' } or 'tutor' or 'student'
     },
   });
 

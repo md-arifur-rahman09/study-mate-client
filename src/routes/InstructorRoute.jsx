@@ -1,4 +1,4 @@
-// src/routes/InstructorRoute.jsx
+// src/routes/TutorRoute.jsx
 
 import { Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
@@ -7,17 +7,17 @@ import Forbidden from "../pages/Forbidden/Forbidden";
 import Loading from "../pages/Loading/Loading";
 
 
-const InstructorRoute = ({ children }) => {
+const TutorRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const { role, isRoleLoading } = useRole();
 
   if (loading || isRoleLoading) return <Loading />;
 
-  if (user && role === "instructor") return children;
+  if (user && role === "tutor") return children;
 
-  if (user && role !== "instructor") return <Forbidden />;
+  if (user && role !== "tutor") return <Forbidden />;
 
   return <Navigate to="/login" replace />;
 };
 
-export default InstructorRoute;
+export default TutorRoute;

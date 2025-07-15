@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
-const ApplyInstructor = () => {
+const ApplyTutor = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [uploading, setUploading] = useState(false);
     const { user } = useAuth();
@@ -16,7 +16,7 @@ const ApplyInstructor = () => {
 
         const photoURL = user?.photoURL;
 
-        const instructorInfo = {
+        const tutorInfo = {
             name: data.name,
             email: data.email,
             phone: data.phone,
@@ -38,10 +38,10 @@ const ApplyInstructor = () => {
             status: "pending",
         };
 
-        axios.post("http://localhost:5000/instructor-requests", instructorInfo)
+        axios.post("http://localhost:5000/tutor-requests", tutorInfo)
             .then(res => {
                 if (res.data.insertedId) {
-                    Swal.fire("Success!", "Your instructor request has been submitted.", "success");
+                    Swal.fire("Success!", "Your tutor request has been submitted.", "success");
                     reset();
                 }
             })
@@ -55,7 +55,7 @@ const ApplyInstructor = () => {
 
     return (
         <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow my-10">
-            <h2 className="text-2xl font-bold mb-6">Apply as Instructor</h2>
+            <h2 className="text-2xl font-bold mb-6">Apply as Tutor</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
@@ -95,7 +95,7 @@ const ApplyInstructor = () => {
                 </div>
 
                 <div>
-                    <label>Why do you want to be an instructor?*</label>
+                    <label>Why do you want to be an tutor?*</label>
                     <textarea {...register("biography", { required: true })} placeholder="Share your motivation and experience..." rows={4} className="textarea textarea-bordered w-full" />
                     {errors.biography && <p className="text-red-500 text-sm">This field is required</p>}
                 </div>
@@ -173,4 +173,4 @@ const ApplyInstructor = () => {
     );
 };
 
-export default ApplyInstructor;
+export default ApplyTutor;
