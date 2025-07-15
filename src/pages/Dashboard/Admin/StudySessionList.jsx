@@ -2,13 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
+import UpdateSessionForm from "./UpdateSessionForm";
 
-const AdminStudySessionList = () => {
+const StudySessionList = () => {
     const [approveModal, setApproveModal] = useState(null);
     const [rejectModal, setRejectModal] = useState(null);
     const [amount, setAmount] = useState(0);
     const [reason, setReason] = useState("");
     const [feedback, setFeedback] = useState("");
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [selectedSession, setSelectedSession] = useState(null);
 
     const { data: sessions = [], refetch, isLoading } = useQuery({
         queryKey: ["admin-all-sessions"],
@@ -100,49 +103,53 @@ const AdminStudySessionList = () => {
                 </thead>
                 <tbody>
                     {sessions
-                     .filter(s => s.status !== "rejected")
-                    .map((s) => (
-                        <tr key={s._id}>
-                            <td>{s.title}</td>
-                            <td>{s.tutorName}</td>
-                            <td className="capitalize">{s.status}</td>
-                            <td>{s.registrationFee === 0 ? "Free" : `৳${s.registrationFee}`}</td>
-                            <td className="space-x-2">
-                                {s.status === "pending" && (
-                                    <>
-                                        <button
-                                            onClick={() => setApproveModal(s)}
-                                            className="bg-green-500 text-white px-2 py-1 rounded"
-                                        >
-                                            Approve
-                                        </button>
-                                        <button
-                                            onClick={() => setRejectModal(s)}
-                                            className="bg-red-500 text-white px-2 py-1 rounded"
-                                        >
-                                            Reject
-                                        </button>
-                                    </>
-                                )}
-                                {s.status === "approved" && (
-                                    <>
-                                        <button
-                                            className="bg-blue-500 text-white px-2 py-1 rounded"
-                                            onClick={() => alert("Update form logic")}
-                                        >
-                                            Update
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(s._id)}
-                                            className="bg-red-500 text-white px-2 py-1 rounded"
-                                        >
-                                            Delete
-                                        </button>
-                                    </>
-                                )}
-                            </td>
-                        </tr>
-                    ))}
+                        .filter(s => s.status !== "rejected")
+                        .map((s) => (
+                            <tr key={s._id}>
+                                <td>{s.title}</td>
+                                <td>{s.tutorName}</td>
+                                <td className="capitalize">{s.status}</td>
+                                <td>{s.registrationFee === 0 ? "Free" : `৳${s.registrationFee}`}</td>
+                                <td className="space-x-2">
+                                    {s.status === "pending" && (
+                                        <>
+                                            <button
+                                                onClick={() => setApproveModal(s)}
+                                                className="bg-green-500 text-white px-2 py-1 rounded"
+                                            >
+                                                Approve
+                                            </button>
+                                            <button
+                                                onClick={() => setRejectModal(s)}
+                                                className="bg-red-500 text-white px-2 py-1 rounded"
+                                            >
+                                                Reject
+                                            </button>
+                                        </>
+                                    )}
+                                    {s.status === "approved" && (
+                                        <>
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedSession(s);
+                                                    setShowUpdateModal(true);
+                                                }}
+                                                className="bg-blue-500 text-white px-2 py-1 rounded text-sm"
+                                            >
+                                                Update
+                                            </button>
+
+                                            <button
+                                                onClick={() => handleDelete(s._id)}
+                                                className="bg-red-500 text-white px-2 py-1 rounded"
+                                            >
+                                                Delete
+                                            </button>
+                                        </>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
                 </tbody>
             </table>
 
@@ -154,14 +161,26 @@ const AdminStudySessionList = () => {
                         className="bg-white p-6 rounded shadow-md w-full max-w-md"
                     >
                         <h3 className="text-lg font-semibold mb-4">Approve Session</h3>
-                        <label className="block mb-2">Fee (0 = Free)</label>
+                        <label className="block mb-2">Fee  ($0 = Free)</label>
                         <input
-                            type="number"
+                            type="text"
                             value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
+                            onChange={(e) => {
+                                const value = e.target.value;
+
+                                // Allow only digits (no letters, no symbols)
+                                if (!/^\d*$/.test(value)) return;
+
+                                // Prevent values less than 1
+                                if (parseInt(value) < 1 && value !== "") return;
+
+                                setAmount(value);
+                            }}
                             className="w-full border p-2 rounded mb-4"
+                            placeholder="Enter registration fee"
                             required
                         />
+
                         <div className="flex justify-end gap-2">
                             <button
                                 type="button"
@@ -177,6 +196,8 @@ const AdminStudySessionList = () => {
                     </form>
                 </div>
             )}
+
+
 
             {/* Reject Modal */}
             {rejectModal && (
@@ -222,8 +243,18 @@ const AdminStudySessionList = () => {
                     </form>
                 </div>
             )}
+
+
+            {showUpdateModal && (
+                <UpdateSessionForm
+                    session={selectedSession}
+                    onClose={() => setShowUpdateModal(false)}
+                    refetch={refetch}
+                />
+            )}
+
         </div>
     );
 };
 
-export default AdminStudySessionList;
+export default StudySessionList;
