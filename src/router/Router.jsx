@@ -30,6 +30,11 @@ import AllStudySessions from "../pages/StudySessions/AllStudySessions.jsx";
 import AllTutors from "../pages/tutors/AllTutors.jsx";
 import MyProfile from "../pages/Dashboard/student/MyProfile.jsx";
 import MyBookedSessions from "../pages/Dashboard/student/MyBookedSessions.jsx";
+import CreateNote from "../pages/Dashboard/student/CreateNote.jsx";
+import ManageNotes from "../pages/Dashboard/student/ManageNotes.jsx";
+import AllStudyMaterials from "../pages/Dashboard/student/AllStudyMaterials.jsx";
+import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials.jsx";
+import AllMaterials from "../pages/Dashboard/tutor/AllMaterials.jsx";
 
 
 export const router = createBrowserRouter([
@@ -56,12 +61,12 @@ export const router = createBrowserRouter([
                 Component: ApplyTutor
             },
             {
-                path:'study-sessions/:id',
-                element: <PrivateRoute><StudySessionDetails></StudySessionDetails></PrivateRoute>
+                path: 'study-sessions/:id',
+                element: <StudySessionDetails></StudySessionDetails>
             },
             {
                 path: '/all-study-sessions',
-        Component: AllStudySessions
+                Component: AllStudySessions
             },
             {
                 path: 'all-tutors',
@@ -80,7 +85,19 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'my-booked-sessions',
-                Component:MyBookedSessions
+                Component: MyBookedSessions
+            },
+            {
+                path: 'create-a-note',
+                Component: CreateNote
+            },
+            {
+                path: 'manage-notes',
+                Component: ManageNotes
+            },
+            {
+                path:'all-study-materials',
+                Component: AllStudyMaterials
             },
             //only admin routes
             {
@@ -97,8 +114,8 @@ export const router = createBrowserRouter([
 
             },
             {
-                path:'approved-tutors',
-            element:<AdminRoute> <ApprovedTutors></ApprovedTutors></AdminRoute>
+                path: 'approved-tutors',
+                element: <AdminRoute> <ApprovedTutors></ApprovedTutors></AdminRoute>
             },
             // turor only route
             {
@@ -108,6 +125,14 @@ export const router = createBrowserRouter([
             {
                 path: 'my-study-sessions',
                 element: <TutorRoute> <MyStudySessions></MyStudySessions></TutorRoute>
+            },
+            {
+                path:'upload-materials',
+                element: <TutorRoute><UploadMaterials></UploadMaterials></TutorRoute>
+            },
+            {
+                path: 'all-materials',
+                element: <TutorRoute><AllMaterials></AllMaterials></TutorRoute>
             }
         ]
 

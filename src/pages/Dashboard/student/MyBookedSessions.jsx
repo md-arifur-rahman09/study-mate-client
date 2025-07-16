@@ -99,6 +99,7 @@ const MyBookingSessions = () => {
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
               ></textarea>
+              
               <label className="block mb-1 font-semibold">Rating (1-5)</label>
               <input
                 type="number"

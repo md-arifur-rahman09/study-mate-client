@@ -54,6 +54,36 @@ const DashboardLayout = () => {
                                     My Booked Sessions
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/create-a-note"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                   Create A Note
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/manage-notes"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                   Manage Notes
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/all-study-materials"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                  All Study Materials
+                                </NavLink>
+                            </li>
                         </>
                     )}
 
@@ -123,6 +153,26 @@ const DashboardLayout = () => {
                                     }
                                 >
                                     My Study Sessions
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/upload-materials"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                    Upload Materials
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/all-materials"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                 View   All Materials
                                 </NavLink>
                             </li>
                         </>
