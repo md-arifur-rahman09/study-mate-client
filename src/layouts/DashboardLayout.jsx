@@ -130,6 +130,16 @@ const DashboardLayout = () => {
                                     Approved  Tutors
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/view-all-materials"
+                                    className={({ isActive }) =>
+                                        isActive ? "text-primary font-bold" : "text-gray-700"
+                                    }
+                                >
+                                  View  All Materials
+                                </NavLink>
+                            </li>
                         </>
                     )}
                     {/* tutor */}

@@ -5,12 +5,12 @@ import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 
-const ManageMaterials = () => {
+const AllMaterials = () => {
   const { user } = useAuth();
   const [materials, setMaterials] = useState([]);
   const [editingMaterial, setEditingMaterial] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const { register, handleSubmit, reset, setValue } = useForm();
+  const { register, handleSubmit,  setValue } = useForm();
 
   useEffect(() => {
     if (user?.email) {
@@ -160,4 +160,4 @@ const ManageMaterials = () => {
   );
 };
 
-export default ManageMaterials;
+export default AllMaterials;

@@ -35,6 +35,7 @@ import ManageNotes from "../pages/Dashboard/student/ManageNotes.jsx";
 import AllStudyMaterials from "../pages/Dashboard/student/AllStudyMaterials.jsx";
 import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials.jsx";
 import AllMaterials from "../pages/Dashboard/tutor/AllMaterials.jsx";
+import AdminViewMaterials from "../pages/Dashboard/Admin/AdminViewMaterials.jsx";
 
 
 export const router = createBrowserRouter([
@@ -116,6 +117,10 @@ export const router = createBrowserRouter([
             {
                 path: 'approved-tutors',
                 element: <AdminRoute> <ApprovedTutors></ApprovedTutors></AdminRoute>
+            },
+            {
+                path:'view-all-materials',
+                element:<AdminRoute><AdminViewMaterials></AdminViewMaterials></AdminRoute>
             },
             // turor only route
             {

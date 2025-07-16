@@ -34,9 +34,10 @@ const CreateStudySession = () => {
       const res = await axios.post("http://localhost:5000/study-sessions", sessionData);
       if (res.data.insertedId) {
         Swal.fire("Success!", "Study session created!", "success");
-        // reset();
+        reset();
       }
-    } catch (err) {
+    } catch (error) {
+      console.log(error);
       Swal.fire("Error!", "Failed to create session", "error");
     }
   };
