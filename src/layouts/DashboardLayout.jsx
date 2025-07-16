@@ -46,12 +46,12 @@ const DashboardLayout = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/dashboard/myCourses"
+                                    to="/dashboard/my-booked-sessions"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                    My Courses
+                                    My Booked Sessions
                                 </NavLink>
                             </li>
                         </>
@@ -62,12 +62,12 @@ const DashboardLayout = () => {
                         <>
                             <li>
                                 <NavLink
-                                    to="/dashboard/manage-users"
+                                    to="/dashboard/all-users"
                                     className={({ isActive }) =>
                                         isActive ? "text-primary font-bold" : "text-gray-700"
                                     }
                                 >
-                                    Manage Users
+                                   All Users
                                 </NavLink>
                             </li>
                             <li>

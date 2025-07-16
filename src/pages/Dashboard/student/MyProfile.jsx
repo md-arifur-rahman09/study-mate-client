@@ -3,8 +3,9 @@
 import { useQuery } from "@tanstack/react-query";
 
 import axios from "axios";
-import useAuth from "../../hooks/useAuth";
-import Loading from "../Loading/Loading";
+import useAuth from "../../../hooks/useAuth";
+import Loading from "../../Loading/Loading";
+
 
 
 

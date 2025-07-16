@@ -1,13 +1,14 @@
 import { Link, NavLink } from "react-router";
-import { useContext } from "react";
-
 import Swal from "sweetalert2";
-import { AuthContext } from "../../context/AuthContext";
+import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
-    const { user, logout } = useContext(AuthContext);
-    console.log(user)
+    const { user, logout } = useAuth();
+    console.log(user);
+    
   
+
+    
   
     const handleLogout = () => {
         logout()
@@ -19,9 +20,12 @@ const Navbar = () => {
             });
     };
 
+
     const navLinks = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/all-study-sessions">All Sessions</NavLink></li>
+            <li><NavLink to="/all-tutors">All Tutors</NavLink></li>
             <li><NavLink to="/applyTutor">Apply Tutor</NavLink></li>
             {user ? (
                 <>

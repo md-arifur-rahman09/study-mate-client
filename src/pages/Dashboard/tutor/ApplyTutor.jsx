@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
-import { useState } from "react";
+import {  useState } from "react";
 import useAuth from "../../../hooks/useAuth";
 
 const ApplyTutor = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [uploading, setUploading] = useState(false);
+   
     const { user } = useAuth();
+ 
 
     const onSubmit = async (data) => {
 
@@ -54,7 +56,7 @@ const ApplyTutor = () => {
 
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow my-10">
+       <div className="max-w-3xl mx-auto p-6 bg-white rounded shadow my-10">
             <h2 className="text-2xl font-bold mb-6">Apply as Tutor</h2>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
