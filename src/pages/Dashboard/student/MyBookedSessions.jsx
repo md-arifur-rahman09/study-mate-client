@@ -3,8 +3,10 @@ import axios from "axios";
 import { FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useTitle from "../../../hooks/useTitle";
 
 const MyBookingSessions = () => {
+  useTitle(" My Booked Sessions")
   const { user } = useAuth();
   const [bookedSessions, setBookedSessions] = useState([]);
   const [selectedSession, setSelectedSession] = useState(null);

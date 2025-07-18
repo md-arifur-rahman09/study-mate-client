@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router"; 
 import { useState } from "react";
+import useTitle from "../../hooks/useTitle";
 
 const AllStudySessions = () => {
+  useTitle('All Study Sessions')
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 18;
 

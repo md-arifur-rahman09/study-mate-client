@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import useTitle from "../../hooks/useTitle";
 
 const AllTutors = () => {
+    useTitle("All Tutors")
     const { data: tutors = [], isLoading } = useQuery({
         queryKey: ["approved-tutors"],
         queryFn: async () => {

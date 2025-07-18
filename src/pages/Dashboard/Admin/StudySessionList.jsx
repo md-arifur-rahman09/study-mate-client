@@ -3,8 +3,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useState } from "react";
 import UpdateSessionForm from "./UpdateSessionForm";
+import useTitle from "../../../hooks/useTitle";
 
 const StudySessionList = () => {
+    useTitle("Study Sessions List")
     const [approveModal, setApproveModal] = useState(null);
     const [rejectModal, setRejectModal] = useState(null);
     const [amount, setAmount] = useState(0);

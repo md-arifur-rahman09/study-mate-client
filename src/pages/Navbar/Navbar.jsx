@@ -23,19 +23,19 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/all-study-sessions">All Sessions</NavLink></li>
-            <li><NavLink to="/all-tutors">All Tutors</NavLink></li>
-            <li><NavLink to="/applyTutor">Apply Tutor</NavLink></li>
+            <li><NavLink title="Home" to="/">Home</NavLink></li>
+            <li><NavLink title="All Study Sessions" to="/all-study-sessions">All Sessions</NavLink></li>
+            <li><NavLink title="All Tutor" to="/all-tutors">All Tutors</NavLink></li>
+            <li><NavLink title="Apply Tutor" to="/applyTutor">Apply Tutor</NavLink></li>
             {user ? (
                 <>
-                    <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                    <li className="bg-red-400"><button  onClick={handleLogout}>Logout</button></li>
+                    <li><NavLink title="Dashboard" to="/dashboard">Dashboard</NavLink></li>
+                    <li className="bg-red-400"><button  title="Logout" onClick={handleLogout}>Logout</button></li>
                 </>
             ) : (
                 <>
-                    <li><NavLink to="/login">Login</NavLink></li>
-                    <li className="bg-blue-400"><NavLink to="/register">Register</NavLink></li>
+                    <li><NavLink title="Login" to="/login">Login</NavLink></li>
+                    <li className="bg-blue-400"><NavLink title="Register" to="/register">Register</NavLink></li>
                 </>
             )}
         </>

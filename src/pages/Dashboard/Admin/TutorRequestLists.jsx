@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import useTitle from "../../../hooks/useTitle";
 
 const TutorRequestList = () => {
+    useTitle("Tutor Request List")
     const { data: requests = [], refetch, isLoading } = useQuery({
         queryKey: ['tutor-requests'],
         queryFn: async () => {

@@ -3,8 +3,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import Loading from "../../Loading/Loading";
+import useTitle from "../../../hooks/useTitle";
 
 const AllStudyMaterials = () => {
+  useTitle("aAkk Study Materials")
   const { user } = useAuth();
   const [bookedSessions, setBookedSessions] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
@@ -41,6 +43,9 @@ const AllStudyMaterials = () => {
   };
 
   if (loading) return <Loading />;
+  if(materials.length===0){
+    return <h2 className="text-center mt-10 text-3xl  font-semibold">There is no materials provided till now!</h2>
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto">

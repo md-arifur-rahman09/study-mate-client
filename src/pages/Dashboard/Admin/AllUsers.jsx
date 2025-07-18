@@ -3,8 +3,10 @@ import { useState, useMemo } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FaSearch } from "react-icons/fa";
+import useTitle from "../../../hooks/useTitle";
 
 const AllUsers = () => {
+  useTitle('All Users')
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: users = [], isLoading, refetch } = useQuery({

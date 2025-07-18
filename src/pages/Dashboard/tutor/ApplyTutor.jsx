@@ -3,8 +3,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import {  useState } from "react";
 import useAuth from "../../../hooks/useAuth";
+import useTitle from "../../../hooks/useTitle";
 
 const ApplyTutor = () => {
+    useTitle("Apply Tutor")
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [uploading, setUploading] = useState(false);
    
