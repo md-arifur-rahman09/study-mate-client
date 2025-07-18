@@ -6,7 +6,10 @@ const Home = () => {
     return (
         <div>
            <Banner></Banner>
-           <StudySession></StudySession>
+         <div>
+           
+              <StudySession></StudySession>
+         </div>
         </div>
     );
 };

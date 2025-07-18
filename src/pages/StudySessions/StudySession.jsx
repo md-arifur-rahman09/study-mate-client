@@ -6,7 +6,7 @@ const StudySession = () => {
     const { data: sessions = [], isLoading } = useQuery({
         queryKey: ["approved-sessions"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/study-sessions/approved");
+            const res = await axios.get("http://localhost:5000/study-session/approved");
             return res.data;
         },
     });
@@ -27,7 +27,9 @@ const StudySession = () => {
     if (isLoading) return <p className="text-center">Loading...</p>;
 
     return (
-        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div>
+            <h2 className="text-4xl text-primary font-bold text-center my-10">Current Study Sessions</h2>
+            <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sessions.slice(0, 6).map((session) => (
                 <div key={session._id} className="bg-white shadow rounded-xl p-4 border">
                     <h2 className="text-xl font-semibold text-primary mb-2">{session.title}</h2>
@@ -60,6 +62,7 @@ const StudySession = () => {
                   </div>
                 </div>
             ))}
+        </div>
         </div>
     );
 };
