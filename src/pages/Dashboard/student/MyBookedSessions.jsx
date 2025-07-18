@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-
 import { FaEye } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
@@ -11,15 +10,23 @@ const MyBookingSessions = () => {
   const [selectedSession, setSelectedSession] = useState(null);
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalCount, setTotalCount] = useState(0);
+  const limit = 12;
 
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/booked-sessions/user/${user.email}`)
-        .then((res) => setBookedSessions(res.data))
+        .get(`http://localhost:5000/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`)
+        .then((res) => {
+          setBookedSessions(res.data.data);
+          setTotalCount(res.data.total);
+        })
         .catch((err) => console.error(err));
     }
-  }, [user]);
+  }, [user, currentPage]);
+
+  const totalPages = Math.ceil(totalCount / limit);
 
   const handleSubmitReview = async () => {
     if (!review || rating < 1 || rating > 5) {
@@ -43,7 +50,7 @@ const MyBookingSessions = () => {
         setRating(5);
       }
     } catch (error) {
-        console.log(error)
+      console.log(error);
       Swal.fire("Error", "Failed to submit review", "error");
     }
   };
@@ -83,6 +90,19 @@ const MyBookingSessions = () => {
         </tbody>
       </table>
 
+      {/* Pagination UI */}
+      <div className="join mt-4 flex justify-center">
+        {Array.from({ length: totalPages }, (_, idx) => idx + 1).map((page) => (
+          <button
+            key={page}
+            className={`join-item btn btn-xs ${currentPage === page ? "btn-active" : ""}`}
+            onClick={() => setCurrentPage(page)}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+
       {selectedSession && (
         <dialog id="review_modal" className="modal modal-open">
           <div className="modal-box max-w-xl">
@@ -99,7 +119,7 @@ const MyBookingSessions = () => {
                 value={review}
                 onChange={(e) => setReview(e.target.value)}
               ></textarea>
-              
+
               <label className="block mb-1 font-semibold">Rating (1-5)</label>
               <input
                 type="number"
