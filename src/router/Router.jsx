@@ -36,6 +36,9 @@ import AllStudyMaterials from "../pages/Dashboard/student/AllStudyMaterials.jsx"
 import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials.jsx";
 import AllMaterials from "../pages/Dashboard/tutor/AllMaterials.jsx";
 import AdminViewMaterials from "../pages/Dashboard/Admin/AdminViewMaterials.jsx";
+import PaymentPage from "../pages/Payment/PaymentPage.jsx";
+
+
 
 
 export const router = createBrowserRouter([
@@ -72,7 +75,8 @@ export const router = createBrowserRouter([
             {
                 path: 'all-tutors',
                 Component: AllTutors
-            }
+            },
+
         ],
     },
     {
@@ -97,8 +101,12 @@ export const router = createBrowserRouter([
                 Component: ManageNotes
             },
             {
-                path:'all-study-materials',
+                path: 'all-study-materials',
                 Component: AllStudyMaterials
+            },
+            {
+                path: 'payment/:id',
+                Component:PaymentPage
             },
             //only admin routes
             {
@@ -119,8 +127,8 @@ export const router = createBrowserRouter([
                 element: <AdminRoute> <ApprovedTutors></ApprovedTutors></AdminRoute>
             },
             {
-                path:'view-all-materials',
-                element:<AdminRoute><AdminViewMaterials></AdminViewMaterials></AdminRoute>
+                path: 'view-all-materials',
+                element: <AdminRoute><AdminViewMaterials></AdminViewMaterials></AdminRoute>
             },
             // turor only route
             {
@@ -132,7 +140,7 @@ export const router = createBrowserRouter([
                 element: <TutorRoute> <MyStudySessions></MyStudySessions></TutorRoute>
             },
             {
-                path:'upload-materials',
+                path: 'upload-materials',
                 element: <TutorRoute><UploadMaterials></UploadMaterials></TutorRoute>
             },
             {
@@ -146,5 +154,10 @@ export const router = createBrowserRouter([
     {
         path: '*',
         Component: NotFound
+    },
+    {
+        path:'/payment/:id',
+        Component: PaymentPage
     }
+   
 ])

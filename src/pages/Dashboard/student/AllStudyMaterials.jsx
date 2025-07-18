@@ -44,11 +44,11 @@ const AllStudyMaterials = () => {
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold mb-6 text-center">📚 My Study Materials</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">📚 Study Materials for Booked Sessions</h2>
 
       {/* Booked Session Buttons */}
       <div className="flex flex-wrap gap-4 justify-center mb-8">
-        {bookedSessions.map((session) => (
+        {bookedSessions.map((session,idx) => (
           <button
             key={session.sessionId}
             className={`btn btn-outline btn-sm md:btn-md rounded-full px-6 ${
@@ -56,7 +56,7 @@ const AllStudyMaterials = () => {
             }`}
             onClick={() => setSelectedSessionId(session.sessionId)}
           >
-            {session.sessionTitle}
+           {idx+1} {session.sessionTitle}
           </button>
         ))}
       </div>

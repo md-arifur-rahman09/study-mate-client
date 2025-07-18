@@ -69,7 +69,7 @@ const MyBookingSessions = () => {
               <td>{s.tutorEmail}</td>
               <td>{s.sessionStart || "N/A"}</td>
               <td>{s.sessionEnd || "N/A"}</td>
-              <td>{s.registrationFee === 0 ? "Free" : `৳${s.registrationFee}`}</td>
+              <td>{s.paymentStatus}</td>
               <td>
                 <button
                   className="btn btn-sm btn-outline btn-info"
