@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useTitle from "../../../hooks/useTitle";
 
 const CreateStudySession = () => {
+useTitle("Create Study Session")
   const { user } = useAuth();
 
   const {

@@ -33,10 +33,14 @@ import MyBookedSessions from "../pages/Dashboard/student/MyBookedSessions.jsx";
 import CreateNote from "../pages/Dashboard/student/CreateNote.jsx";
 import ManageNotes from "../pages/Dashboard/student/ManageNotes.jsx";
 import AllStudyMaterials from "../pages/Dashboard/student/AllStudyMaterials.jsx";
-import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials.jsx";
+
 import AllMaterials from "../pages/Dashboard/tutor/AllMaterials.jsx";
 import AdminViewMaterials from "../pages/Dashboard/Admin/AdminViewMaterials.jsx";
 import PaymentPage from "../pages/Payment/PaymentPage.jsx";
+import UploadMaterials from "../pages/Dashboard/tutor/UploadMaterials.jsx";
+import TermsOfUse from "../pages/Footer/TermsOfUse.jsx";
+import PrivacyPolicy from "../pages/Footer/PrivacyPolicy.jsx";
+import CookiePolicy from "../pages/Footer/CookiePolicy.jsx";
 
 
 
@@ -62,7 +66,7 @@ export const router = createBrowserRouter([
 
             {
                 path: 'applyTutor',
-                Component: ApplyTutor
+              element:<PrivateRoute> <ApplyTutor></ApplyTutor></PrivateRoute>
             },
             {
                 path: 'study-sessions/:id',
@@ -76,6 +80,19 @@ export const router = createBrowserRouter([
                 path: 'all-tutors',
                 Component: AllTutors
             },
+            {
+  path: '/terms',
+  Component: TermsOfUse
+},
+{
+  path: '/privacy',
+  Component: PrivacyPolicy
+},
+{
+  path: '/cookie-policy',
+  Component: CookiePolicy
+}
+
 
         ],
     },
@@ -158,6 +175,7 @@ export const router = createBrowserRouter([
     {
         path:'/payment/:id',
         Component: PaymentPage
-    }
+    },
+
    
 ])

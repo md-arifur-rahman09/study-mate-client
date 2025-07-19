@@ -4,8 +4,10 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import useTitle from "../../../hooks/useTitle";
 
 const AllMaterials = () => {
+  useTitle("All Uploaded Materials")
   const { user } = useAuth();
   const [materials, setMaterials] = useState([]);
   const [editingMaterial, setEditingMaterial] = useState(null);

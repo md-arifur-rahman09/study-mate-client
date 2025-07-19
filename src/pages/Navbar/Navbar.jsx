@@ -4,12 +4,7 @@ import useAuth from "../../hooks/useAuth";
 
 const Navbar = () => {
     const { user, logout } = useAuth();
-    console.log(user);
-    
-  
 
-    
-  
     const handleLogout = () => {
         logout()
             .then(() => {
@@ -20,59 +15,67 @@ const Navbar = () => {
             });
     };
 
-
     const navLinks = (
         <>
-            <li><NavLink title="Home" to="/">Home</NavLink></li>
-            <li><NavLink title="All Study Sessions" to="/all-study-sessions">All Sessions</NavLink></li>
-            <li><NavLink title="All Tutor" to="/all-tutors">All Tutors</NavLink></li>
-            <li><NavLink title="Apply Tutor" to="/applyTutor">Apply Tutor</NavLink></li>
-            {user ? (
-                <>
-                    <li><NavLink title="Dashboard" to="/dashboard">Dashboard</NavLink></li>
-                    <li className="bg-red-400"><button  title="Logout" onClick={handleLogout}>Logout</button></li>
-                </>
-            ) : (
-                <>
-                    <li><NavLink title="Login" to="/login">Login</NavLink></li>
-                    <li className="bg-blue-400"><NavLink title="Register" to="/register">Register</NavLink></li>
-                </>
-            )}
+            <li><NavLink to="/" className="hover:text-primary">Home</NavLink></li>
+            <li><NavLink to="/all-study-sessions" className="hover:text-primary">All Sessions</NavLink></li>
+            <li><NavLink to="/all-tutors" className="hover:text-primary">All Tutors</NavLink></li>
+            <li><NavLink to="/applyTutor" className="hover:text-primary">Apply Tutor</NavLink></li>
+            {user && <li><NavLink to="/dashboard" className="hover:text-primary">Dashboard</NavLink></li>}
         </>
     );
 
     return (
-        <div className="navbar  bg-white text-black px-4 shadow-md sticky top-0 z-50">
+        <div className="navbar bg-base-100 shadow-sm px-4 md:px-10 lg:px-16">
+            {/* Left Start */}
             <div className="navbar-start">
-                <Link to="/" className="text-xl font-bold text-primary">StudyMate</Link>
-            </div>
-
-            <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal gap-4 text-base font-medium">
-                    {navLinks}
-                </ul>
-            </div>
-
-            <div className="navbar-end">
-                {user && (
-                    <div className="flex items-center gap-2">
-                        <img title={user?.email} src={user?.photoURL} alt="profile" className="w-8 h-8 rounded-full" />
-                      
+                {/* Mobile Dropdown */}
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                d="M4 6h16M4 12h8m-8 6h16" />
+                        </svg>
                     </div>
-                )}
-                <div className="dropdown dropdown-end lg:hidden">
-                    <label tabIndex={0} className="btn btn-ghost">
-                        <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round"
-                                strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" /></svg>
-                    </label>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-white rounded-box w-52"
+                        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                     >
                         {navLinks}
                     </ul>
                 </div>
+
+                <Link to="/" className="btn btn-ghost text-xl text-primary font-bold">StudyMate</Link>
+            </div>
+
+            {/* Center Menu */}
+            <div className="navbar-center hidden lg:flex">
+                <ul className="menu menu-horizontal px-1 gap-2 text-base font-medium">
+                    {navLinks}
+                </ul>
+            </div>
+
+            {/* Right Side */}
+            <div className="navbar-end space-x-3">
+                {user ? (
+                    <div className="flex items-center gap-3">
+                        <img
+                            src={user?.photoURL}
+                            title={user?.displayName || user?.email}
+                            alt="profile"
+                            className="w-9 h-9 rounded-full border-2 border-primary"
+                        />
+                        <button onClick={handleLogout} className="btn sm: btn-sm lg:btn-md bg-red-500 text-white hover:bg-red-600">
+                            Logout
+                        </button>
+                    </div>
+                ) : (
+                    <div className="flex gap-2">
+                        <NavLink to="/login" className="btn  btn-outline btn-sm">Login</NavLink>
+                        <NavLink to="/register" className="btn btn-primary btn-sm text-white">Register</NavLink>
+                    </div>
+                )}
             </div>
         </div>
     );

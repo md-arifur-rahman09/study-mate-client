@@ -6,7 +6,7 @@ import Loading from "../../Loading/Loading";
 import useTitle from "../../../hooks/useTitle";
 
 const AllStudyMaterials = () => {
-  useTitle("aAkk Study Materials")
+  useTitle("All Study Materials")
   const { user } = useAuth();
   const [bookedSessions, setBookedSessions] = useState([]);
   const [selectedSessionId, setSelectedSessionId] = useState(null);
@@ -27,8 +27,7 @@ const AllStudyMaterials = () => {
 
   useEffect(() => {
     if (selectedSessionId) {
-      axios
-        .get(`http://localhost:5000/materials/session/${selectedSessionId}`)
+      axios.get(`http://localhost:5000/materials/session/${selectedSessionId}`)
         .then((res) => setMaterials(res.data || []));
     }
   }, [selectedSessionId]);

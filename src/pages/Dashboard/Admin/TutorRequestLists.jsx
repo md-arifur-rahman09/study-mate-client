@@ -41,13 +41,13 @@ const TutorRequestList = () => {
     if (isLoading) return <p className="text-center">Loading...</p>;
 
     return (
-        <div className="p-4">
+        <div >
             <h2 className="text-2xl font-bold mb-4">Pending Tutor Requests</h2>
             {requests.length === 0 ? (
                 <p className="text-gray-500">No pending requests.</p>
             ) : (
-                <div className="overflow-x-auto">
-                    <table className="table w-full border">
+                <div className="overflow-x-auto ">
+                    <table className="table w-full table-auto">
                         <thead>
                             <tr className="bg-gray-200 text-sm text-left">
                                 <th>Name</th>

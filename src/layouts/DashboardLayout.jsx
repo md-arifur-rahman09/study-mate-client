@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink, Outlet } from "react-router"; 
+import { NavLink, Outlet } from "react-router";
 import { FaBars, FaTimes } from "react-icons/fa";
 import useRole from "../hooks/useRole";
 
@@ -70,7 +70,7 @@ const DashboardLayout = () => {
             </div>
 
             {/* Main content */}
-            <div className="flex-1 ml-0 lg:ml- p-4 min-h-screen bg-gray-50">
+            <div className="flex-1 w-full  p-4 min-h-screen bg-gray-50">
                 {/* Topbar for mobile */}
                 <div className="lg:hidden mb-4">
                     <button
@@ -81,7 +81,10 @@ const DashboardLayout = () => {
                     </button>
                 </div>
 
-                <Outlet />
+                <div className="max-w-7xl mx-auto w-full">
+                    <Outlet />
+                </div>
+
             </div>
         </div>
     );

@@ -72,7 +72,7 @@ const AllUsers = () => {
 
       {/* Table */}
       <div className="overflow-x-auto">
-        <table className="table w-full border">
+        <table className="table w-full ">
           <thead className="bg-gray-200">
             <tr>
               <th>Name</th>

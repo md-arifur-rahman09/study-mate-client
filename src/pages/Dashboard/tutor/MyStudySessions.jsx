@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
+import useTitle from "../../../hooks/useTitle";
 
 const MyStudySessions = () => {
     const { user } = useAuth();
+    useTitle("My Study Sessions")
 
     const { data: sessions = [], refetch, isLoading } = useQuery({
         queryKey: ['my-study-sessions', user?.email],
@@ -42,11 +44,16 @@ const MyStudySessions = () => {
     };
 
     if (isLoading) return <p>Loading...</p>;
+    if (sessions.length === 0) {
+        return <h2 className="text-center font-semibold text-3xl mt-10">No Approved Study sessions yet!</h2>;
+    }
+
 
     return (
-        <div className="overflow-x-auto p-4">
+        <div className=" p-4">
             <h2 className="text-2xl font-bold mb-4">My Study Sessions</h2>
-            <table className="table w-full border">
+     <div className="overflow-x-auto w-full">
+              <table className="min-w-full table-auto table ">
                 <thead className="bg-gray-200 text-sm text-left">
                     <tr>
                         <th>Title</th>
@@ -83,6 +90,7 @@ const MyStudySessions = () => {
                     ))}
                 </tbody>
             </table>
+          </div>
         </div>
     );
 };

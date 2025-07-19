@@ -41,14 +41,14 @@ const AdminViewMaterials = () => {
   if (loading) return <Loading />;
 
   return (
-    <div className="p-4 md:p-6">
+    <div>
       <h2 className="text-2xl font-bold mb-4">All Uploaded Materials</h2>
 
       {materials.length === 0 ? (
         <div className="text-center text-gray-500 mt-10">No materials found.</div>
       ) : (
         <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
-          <table className="table">
+          <table className="table table-auto w-full">
             <thead className="bg-base-200 text-[13px] uppercase">
               <tr>
                 <th>#</th>

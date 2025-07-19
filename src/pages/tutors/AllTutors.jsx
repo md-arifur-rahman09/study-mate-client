@@ -15,12 +15,13 @@ const AllTutors = () => {
     if (isLoading) return <p className="text-center mt-5">Loading tutors...</p>;
 
     return (
-        <div className="p-4 overflow-x-auto">
+        <div className="p-4 ">
             <h2 className="text-2xl font-bold mb-4">All Listed Tutors</h2>
-            {tutors.length === 0 ? (
+           <div className="overflow-x-auto">
+             {tutors.length === 0 ? (
                 <p className="text-gray-500">No approved tutors found.</p>
             ) : (
-                <table className="min-w-full table-auto border">
+                <table className="min-w-full table-auto ">
                     <thead className="bg-gray-200 text-sm">
                         <tr>
                             <th className="px-4 py-2 text-left">Name</th>
@@ -32,7 +33,7 @@ const AllTutors = () => {
                     </thead>
                     <tbody>
                         {tutors.map((tutor) => (
-                            <tr key={tutor._id} className="border-b hover:bg-gray-50 text-sm">
+                            <tr key={tutor._id} className=" hover:bg-gray-50 text-sm">
                                 <td className="px-4 py-2">{tutor.name}</td>
                                 <td className="px-4 py-2">{tutor.email}</td>
                                 <td className="px-4 py-2">{tutor.expertise}</td>
@@ -43,6 +44,7 @@ const AllTutors = () => {
                     </tbody>
                 </table>
             )}
+           </div>
         </div>
     );
 };

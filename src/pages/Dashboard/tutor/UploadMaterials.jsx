@@ -3,27 +3,35 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 import Swal from "sweetalert2";
+
+import useTitle from "../../../hooks/useTitle";
 import useAuth from "../../../hooks/useAuth";
+import { GiConsoleController } from "react-icons/gi";
 
 const UploadMaterials = () => {
+  useTitle("Upload Materials")
   const { user } = useAuth();
   const { register, handleSubmit, reset } = useForm();
   const [sessions, setSessions] = useState([]);
+  const [loading, setLoading]= useState(false);
 
 
 
-  // Load all approved sessions using useEffect
-  useEffect(() => {
-    if (user?.email) {
-      axios.get(`http://localhost:5000/study-sessions/approved?tutorEmail=${user.email}`)
-        .then((res) => setSessions(res.data || []))
-        .catch(error=> {
-            console.log(error);
-        })
-    }
-  }, [user]);
+ 
+
+  useEffect(()=> {
+    axios.get(`http://localhost:5000/study-session/approved?tutorEmail=${user?.email}`)
+    .then(res=> {
+      console.log(res.data);
+      setSessions(res.data)
+    })
+    .catch(error=> {
+     console.log(error)
+    })
+  },[user?.email])
 
 const onSubmit = (data) => {
+  setLoading(true);
   const imageFile = data.image[0];
   const formData = new FormData();
   formData.append("image", imageFile);
@@ -33,7 +41,7 @@ const onSubmit = (data) => {
   axios.post(`https://api.imgbb.com/1/upload?key=${imgbbKey}`, formData)
     .then((res) => {
       if (res.data.success) {
-        const imageUrl = res.data.data.display_url;
+        const imageUrl = res.data.data.url;
 
         const materialInfo = {
           title: data.title,
@@ -49,6 +57,7 @@ const onSubmit = (data) => {
           .then((res) => {
             if (res.data.success || res.data.insertedId) {
               Swal.fire("Success", "Material uploaded successfully", "success");
+              setLoading(false);
               reset();
             }
           })
@@ -76,7 +85,7 @@ const onSubmit = (data) => {
             className="select select-bordered w-full"
           >
             <option value="">Select session</option>
-            {sessions.map((s) => (
+            {sessions?.map((s) => (
               <option key={s._id} value={s._id}>
                 {s.title}
               </option>
@@ -125,7 +134,9 @@ const onSubmit = (data) => {
         </div>
 
         <button type="submit" className="btn btn-primary w-full">
-          Upload Material
+         {
+          loading ? "Uploading...":  "Upload Material"
+         }
         </button>
       </form>
     </div>
