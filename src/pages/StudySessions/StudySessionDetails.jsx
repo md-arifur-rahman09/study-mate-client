@@ -8,11 +8,34 @@ import { useEffect, useState } from "react";
 const StudySessionDetails = () => {
     const { id } = useParams();
     const { user, loading } = useAuth();
-    const [userRole, setUserRole] = useState(null);
-    const [reviews, setReviews] = useState([]);
-    const [data,setData]=useState({});
     const navigate = useNavigate();
 
+    const [userRole, setUserRole] = useState(null);
+    const [reviews, setReviews] = useState([]);
+
+    // ✅ Step 1: Get user role
+    useEffect(() => {
+        if (!user?.email) return;
+
+        axios.get(`http://localhost:5000/users/role/${user.email}`)
+            .then(res => {
+                console.log("User Role:", res.data.role);
+                setUserRole(res.data.role);
+            })
+            .catch(() => setUserRole(null));
+    }, [user?.email]);
+
+    // ✅ Step 2: Check if already booked
+    const { data: bookedSession = {}, refetch: refetchBooking } = useQuery({
+        queryKey: ['already-booked', user?.email, id],
+        enabled: !!user?.email && !!id,
+        queryFn: async () => {
+            const res = await axios.get(`http://localhost:5000/booked-sessions/check?studentEmail=${user.email}&sessionId=${id}`);
+            return res.data;
+        }
+    });
+
+    // ✅ Step 3: Get session data
     const { data: session = {}, isLoading } = useQuery({
         queryKey: ['study-session', id],
         queryFn: async () => {
@@ -21,15 +44,7 @@ const StudySessionDetails = () => {
         }
     });
 
-    console.log(1,session)
-    useEffect(() => {
-        if (user?.email) {
-            axios.get(`http://localhost:5000/users/role/${user.email}`)
-                .then(res => setUserRole(res.data.role))
-                .catch(() => setUserRole(null));
-        }
-    }, [user]);
-
+    // ✅ Step 4: Get reviews
     useEffect(() => {
         if (session?._id) {
             axios.get(`http://localhost:5000/reviews/${session._id}`)
@@ -38,31 +53,36 @@ const StudySessionDetails = () => {
         }
     }, [session?._id]);
 
-    const { data: isBooked = false, refetch: refetchBooking } = useQuery({
-        queryKey: ['already-booked', user?.email, session?._id],
-        enabled: !!user?.email && !!session?._id,
-        queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/booked-sessions/check?studentEmail=${user.email}&sessionId=${session._id}`);
-            return res.data.alreadyBooked;
-        }
-    });
-
-    useEffect(()=> {
-        axios.get(`http://localhost:5000/booked-sessions/${session._id}`)
-        .then(res=> {
-            console.log(2,res.data);
-            setData(res.data);
-
-        })
-    },[session])
+    // ✅ Time & logic setup
     const now = new Date();
     const registrationStart = new Date(session.registrationStart);
     const registrationEnd = new Date(session.registrationEnd);
 
+    const isBooked = bookedSession?.sessionId === id && bookedSession?.studentEmail === user?.email;
     const isBeforeStart = now < registrationStart;
     const isRegistrationOngoing = registrationStart <= now && now <= registrationEnd;
     const isRegistrationEnded = now > registrationEnd;
 
+    const isDisabled =
+        loading ||
+        userRole === null ||
+        !user ||
+        userRole === "admin" ||
+        userRole === "tutor" ||
+        isBooked ||
+        isBeforeStart ||
+        isRegistrationEnded;
+
+    const buttonLabel =
+        !user ? "Login required"
+            : userRole === null ? "Loading role..."
+                : userRole === "admin" || userRole === "tutor" ? "Only students can book"
+                    : isBooked ? "✅ Already Booked"
+                        : isBeforeStart ? "Upcoming"
+                            : isRegistrationEnded ? "Registration Closed"
+                                : "Book Now";
+
+    // ✅ Handle Booking
     const handleBooking = async () => {
         if (!user) {
             return Swal.fire("Login Required", "Please login to book the session", "warning");
@@ -75,11 +95,8 @@ const StudySessionDetails = () => {
         if (isBooked) {
             return Swal.fire("Already Booked", "You have already booked this session.", "info");
         }
-        if( session._id === data.sessionId){
-            return Swal.fire("Already Booked", "You have already booked this session.", "info")
-        }
 
-        if (session.registrationFee > 0    ) {
+        if (session.registrationFee > 0) {
             Swal.fire("Redirecting", "You will be taken to the payment page", "info");
             return navigate(`/payment/${session._id}`);
         }
@@ -99,7 +116,6 @@ const StudySessionDetails = () => {
 
         try {
             const res = await axios.post("http://localhost:5000/booked-sessions", bookingData);
-
             if (res.data.success || res.data.insertedId) {
                 Swal.fire("Booked!", "Session booked successfully", "success");
                 refetchBooking();
@@ -114,28 +130,12 @@ const StudySessionDetails = () => {
         }
     };
 
-    if (isLoading || loading) return <p className="text-center py-10">Loading...</p>;
+    // // ✅ Global Loading
+    // if (loading || isLoading || userRole === null) {
+    //     return <p className="text-center py-10">Loading...</p>;
+    // }
 
-    const isDisabled =
-        !user ||
-        userRole === "admin" ||
-        userRole === "tutor" ||
-        isBooked ||
-        isBeforeStart ||
-        isRegistrationEnded;
-
-    const buttonLabel = !user
-        ? "Login required"
-        : userRole === "admin" || userRole === "tutor"
-            ? "Only students can book"
-            : isBooked
-                ? "✅ Already Booked"
-                : isBeforeStart
-                    ? "Upcoming"
-                    : isRegistrationEnded
-                        ? "Registration Closed"
-                        : "Book Now";
-
+    // ✅ Main UI
     return (
         <div className="max-w-5xl mx-auto p-6 space-y-6">
             <div className="bg-base-100 shadow-md rounded-xl p-6">
@@ -151,10 +151,14 @@ const StudySessionDetails = () => {
                     <p><strong>Registration Fee:</strong> {session.registrationFee === 0 ? "Free" : `$${session.registrationFee}`}</p>
                 </div>
 
+                {/* ✅ Booking Button */}
                 <div className="mt-6">
                     <button
                         onClick={handleBooking}
-                        className={`px-5 py-2 rounded text-white ${isDisabled ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+                        className={`px-5 py-2 rounded text-white ${isDisabled
+                            ? 'bg-gray-400 cursor-not-allowed'
+                            : 'bg-blue-600 hover:bg-blue-700'
+                            }`}
                         disabled={isDisabled}
                     >
                         {buttonLabel}
@@ -162,7 +166,7 @@ const StudySessionDetails = () => {
                 </div>
             </div>
 
-            {/* Reviews Section */}
+            {/* ✅ Reviews Section */}
             <div className="bg-base-100 shadow rounded-xl p-6">
                 <h3 className="text-xl font-semibold mb-4">Student Reviews</h3>
                 {reviews.length === 0 ? (

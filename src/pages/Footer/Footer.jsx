@@ -5,7 +5,7 @@ import { Facebook } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="bg-base-200 text-base-content pt-10 px-4">
-      <div className="max-w-7xl mx-auto">
+      <div className=" mx-auto">
         <div className="footer grid grid-cols-2 md:grid-cols-4 gap-8 pb-10 border-b border-gray-300">
           {/* Logo & Description */}
           <div>

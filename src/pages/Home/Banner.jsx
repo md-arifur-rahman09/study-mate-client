@@ -13,13 +13,13 @@ const AnimatedBanner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % animations.length);
-    }, 4000); // Change every 4 seconds
+    }, 3000); // Change every 4 seconds
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className=" py-10 px-4 sm:px-12">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-10">
+      <div className=" mx-auto grid md:grid-cols-2 items-center gap-10">
         {/* Text Section */}
         <div className="space-y-5">
           <h1 className="text-4xl md:text-5xl font-extrabold text-primary">
@@ -44,7 +44,7 @@ const AnimatedBanner = () => {
 
         {/* Animated Illustration */}
         <div>
-          <Lottie animationData={animations[current]} loop={true} style={{ height: "360px" }} />
+          <Lottie animationData={animations[current]} loop={true} />
         </div>
       </div>
     </section>

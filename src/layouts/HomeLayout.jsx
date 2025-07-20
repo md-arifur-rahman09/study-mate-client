@@ -13,7 +13,7 @@ const HomeLayout = () => {
              <Navbar></Navbar>
            </nav>
             <Suspense fallback={<Loading></Loading>}>
-                <main className='max-w-7xl mx-auto min-h-screen'>
+                <main className='mx-auto max-w-7xl min-h-[70vh]'>
                     <Outlet></Outlet>
                 </main>
             </Suspense>

@@ -81,7 +81,7 @@ const DashboardLayout = () => {
                     </button>
                 </div>
 
-                <div className="max-w-7xl mx-auto w-full">
+                <div className=" mx-auto w-full">
                     <Outlet />
                 </div>
 

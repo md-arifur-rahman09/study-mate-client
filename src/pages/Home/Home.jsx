@@ -11,7 +11,9 @@ const Home = () => {
     useTitle('Home')
     return (
         <div className='bg-gradient-to-b from-blue-50 to-white'>
-           <Banner></Banner>
+          <section>
+             <Banner></Banner>
+          </section>
          <div className='py-16'>
            
               <StudySession></StudySession>

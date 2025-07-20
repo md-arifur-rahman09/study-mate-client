@@ -4,11 +4,13 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import GoogleLogin from "./GoogleLogin";
 import useTitle from "../../hooks/useTitle";
+import { useNavigate } from "react-router";
 
 const Register = () => {
   useTitle("Register");
   const { createUser, updateUserProfile } = useContext(AuthContext);
   const [uploading, setUploading] = useState(false);
+  const navigate=useNavigate();
 
  
 
@@ -51,15 +53,9 @@ const Register = () => {
                 };
 
                 axios.post("http://localhost:5000/users", userInfo)
-                  .then(() => {
-                    axios.post("http://localhost:5000/jwt", { email }, { withCredentials: true })
-                      .then(() => {
-                        Swal.fire("Success!", "Registration complete", "success");
-                        navigate('/');
-                      })
-                      .catch((err) => {
-                        Swal.fire("JWT Error", err.message, "error");
-                      });
+                  .then(res => {
+                   console.log(res.data);
+                   navigate('/')
                   })
                   .catch((err) => {
                     Swal.fire("DB Error", err.message, "error");

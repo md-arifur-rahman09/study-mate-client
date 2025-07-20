@@ -43,11 +43,11 @@ const AllStudyMaterials = () => {
 
   if (loading) return <Loading />;
   if(materials.length===0){
-    return <h2 className="text-center mt-10 text-3xl  font-semibold">There is no materials provided till now!</h2>
+    return <h2 className="text-center  text-2xl  font-semibold">There is no materials provided till now!</h2>
   }
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="p-6  mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">📚 Study Materials for Booked Sessions</h2>
 
       {/* Booked Session Buttons */}
