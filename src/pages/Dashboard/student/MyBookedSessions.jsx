@@ -23,7 +23,7 @@ const MyBookingSessions = () => {
       setLoading(true); 
       axios
         .get(
-          `http://localhost:5000/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`, {
+          `https://study-mate-server-nine.vercel.app/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`, {
             withCredentials: true
           }
         )
@@ -55,7 +55,7 @@ const MyBookingSessions = () => {
     };
 
     try {
-      const res = await axios.post("http://localhost:5000/reviews", reviewData);
+      const res = await axios.post("https://study-mate-server-nine.vercel.app/reviews", reviewData);
       if (res.data.insertedId) {
         Swal.fire("Success", "Review submitted successfully", "success");
         setSelectedSession(null);
@@ -63,7 +63,7 @@ const MyBookingSessions = () => {
         setRating(5);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       Swal.fire("Error", "Failed to submit review", "error");
     }
   };

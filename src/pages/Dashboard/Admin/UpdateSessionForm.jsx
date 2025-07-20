@@ -28,7 +28,7 @@ const UpdateSessionForm = ({ session, onClose, refetch }) => {
 
         try {
             const res = await axios.patch(
-                `http://localhost:5000/study-sessions/${session._id}`,
+                `https://study-mate-server-nine.vercel.app/study-sessions/${session._id}`,
                 formData,
                 { withCredentials: true }
             );

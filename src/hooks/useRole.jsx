@@ -11,7 +11,7 @@ const useRole = () => {
     enabled: !loading && !!user?.email,
     queryKey: ['user-role', user?.email],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/users/role/${user.email}`, {
+      const res = await axios.get(`https://study-mate-server-nine.vercel.app/users/role/${user.email}`, {
         withCredentials: true
       });
       return res.data; // expected { role: 'admin' } or 'tutor' or 'student'

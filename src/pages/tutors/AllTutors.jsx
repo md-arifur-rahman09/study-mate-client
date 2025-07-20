@@ -7,7 +7,7 @@ const AllTutors = () => {
     const { data: tutors = [], isLoading } = useQuery({
         queryKey: ["approved-tutors"],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/tutors?status=approved");
+            const res = await axios.get("https://study-mate-server-nine.vercel.app/tutors?status=approved");
             return res.data;
         },
     });

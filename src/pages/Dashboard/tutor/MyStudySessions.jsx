@@ -12,7 +12,7 @@ const MyStudySessions = () => {
         queryKey: ['my-study-sessions', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/my-study-sessions?email=${user.email}`, {
+            const res = await axios.get(`https://study-mate-server-nine.vercel.app/my-study-sessions?email=${user.email}`, {
                 withCredentials: true
             });
             return res.data;
@@ -30,7 +30,7 @@ const MyStudySessions = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const res = await axios.patch(`http://localhost:5000/study-sessions/reapply/${id}`, {}, {
+            const res = await axios.patch(`https://study-mate-server-nine.vercel.app/study-sessions/reapply/${id}`, {}, {
                 withCredentials: true
             });
 

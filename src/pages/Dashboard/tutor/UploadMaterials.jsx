@@ -20,16 +20,16 @@ const UploadMaterials = () => {
  
 
   useEffect(()=> {
-    axios.get(`http://localhost:5000/study-session/approved?tutorEmail=${user?.email}`, {
+    axios.get(`https://study-mate-server-nine.vercel.app/study-session/approved?tutorEmail=${user?.email}`, {
       withCredentials: true
     })
     .then(res=> {
-      console.log(res.data);
+      // console.log(res.data);
       setSessions(res.data)
     })
-    .catch(error=> {
-     console.log(error)
-    })
+    // .catch(error=> {
+    //  console.log(error)
+    // })
   },[user?.email])
 
 const onSubmit = (data) => {
@@ -55,7 +55,7 @@ const onSubmit = (data) => {
           updatedAt: new Date().toISOString(),
         };
 
-        axios.post("http://localhost:5000/materials", materialInfo)
+        axios.post("https://study-mate-server-nine.vercel.app/materials", materialInfo)
           .then((res) => {
             if (res.data.success || res.data.insertedId) {
               Swal.fire("Success", "Material uploaded successfully", "success");
@@ -63,14 +63,14 @@ const onSubmit = (data) => {
               reset();
             }
           })
-          .catch((err) => {
-            console.log(err.message);
+          .catch(() => {
+            // console.log(err.message);
             Swal.fire("Error", "Failed to save material", "error");
           });
       }
     })
-    .catch((err) => {
-      console.log(err.message);
+    .catch(() => {
+      // console.log(err.message);
       Swal.fire("Error", "Image upload failed", "error");
     });
 };

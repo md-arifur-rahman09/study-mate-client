@@ -25,17 +25,21 @@ const CreateNote = () => {
       status: "active"
     };
 
-    try {
-      const res = await axios.post("http://localhost:5000/notes", noteData);
-      if (res.data.insertedId) {
-        Swal.fire("Success!", "Note created successfully", "success");
-        setTitle("");
-        setDescription("");
-      }
-    } catch (error) {
-        console.log(error)
-      Swal.fire("Error", "Failed to create note", "error");
-    }
+    axios.post("https://study-mate-server-nine.vercel.app/notes", noteData)
+      .then(res => {
+
+        if (res.data.insertedId) {
+          Swal.fire("Success!", "Note created successfully", "success");
+          setTitle("");
+          setDescription("");
+        }
+      })
+      // .catch(error => {
+      //  console.log(error);
+      // })
+
+
+
   };
 
   return (

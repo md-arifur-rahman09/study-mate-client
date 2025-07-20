@@ -9,7 +9,7 @@ const ApprovedTutors = () => {
     const { data: tutors = [], isPending, error, refetch } = useQuery({
         queryKey: ['approved-tutors'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/approved-tutors", {
+            const res = await axios.get("https://study-mate-server-nine.vercel.app/approved-tutors", {
                 withCredentials: true
             });
             return res.data;
@@ -27,7 +27,7 @@ const ApprovedTutors = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const res = await axios.patch(`http://localhost:5000/tutor-deactivate/${id}`);
+            const res = await axios.patch(`https://study-mate-server-nine.vercel.app/tutor-deactivate/${id}`);
             if (res.data.modifiedCount > 0) {
                 Swal.fire("Success", "Tutor deactivated", "success");
                 refetch();

@@ -10,7 +10,7 @@ const TutorRequestList = () => {
     const { data: requests = [], refetch, isLoading } = useQuery({
         queryKey: ['tutor-requests'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/tutor-requests?status=pending", {
+            const res = await axios.get("https://study-mate-server-nine.vercel.app/tutor-requests?status=pending", {
                 withCredentials: true
             });
             return res.data;
@@ -28,7 +28,7 @@ const TutorRequestList = () => {
         if (!confirm.isConfirmed) return;
 
         try {
-            const res = await axios.patch(`http://localhost:5000/tutor-requests/${id}`, {
+            const res = await axios.patch(`https://study-mate-server-nine.vercel.app/tutor-requests/${id}`, {
                 status: action
             });
 

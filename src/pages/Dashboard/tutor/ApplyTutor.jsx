@@ -42,15 +42,16 @@ const ApplyTutor = () => {
             status: "pending",
         };
 
-        axios.post("http://localhost:5000/tutor-requests", tutorInfo)
+        axios.post("https://study-mate-server-nine.vercel.app/tutor-requests", tutorInfo)
             .then(res => {
-                if (res.data.insertedId) {
+                if  (res.data.insertedId) {
                     Swal.fire("Success!", "Your tutor request has been submitted.", "success");
                     reset();
                 }
             })
-            .catch(error => {
-                console.log(error);
+            .catch(() => {
+                // console.log(error);
+                  Swal.fire("Error", "Failed to submit Tutor Request", "error");
             });
 
         setUploading(false);

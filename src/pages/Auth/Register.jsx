@@ -52,9 +52,9 @@ const Register = () => {
                   isVerified: false,
                 };
 
-                axios.post("http://localhost:5000/users", userInfo)
-                  .then(res => {
-                   console.log(res.data);
+                axios.post("https://study-mate-server-nine.vercel.app/users", userInfo)
+                  .then(() => {
+                  //  console.log(res.data);
                    navigate('/')
                   })
                   .catch((err) => {

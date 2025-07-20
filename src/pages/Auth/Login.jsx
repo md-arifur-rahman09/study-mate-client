@@ -23,7 +23,7 @@ const Login = () => {
     setLoading(true);
     signInUser(email, password)
       .then(async () => {
-        await axios.post("http://localhost:5000/jwt", { email }, { withCredentials: true });
+        await axios.post("https://study-mate-server-nine.vercel.app/jwt", { email }, { withCredentials: true });
         Swal.fire("Welcome!", "Login successful", "success");
         navigate(location.state || '/');
       })

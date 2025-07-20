@@ -16,7 +16,7 @@ const navigate = useNavigate();
 const { data: session = {}, isLoading } = useQuery({
 queryKey: ["study-session", id],
 queryFn: async () => {
-    const res = await axios.get(`http://localhost:5000/study-sessions/${id}`);
+    const res = await axios.get(`https://study-mate-server-nine.vercel.app/study-sessions/${id}`);
     return res.data;
 },
 });

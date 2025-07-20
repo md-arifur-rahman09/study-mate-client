@@ -18,7 +18,7 @@ const GoogleLogin = () => {
                 const user = res.user;
 
                 // Get JWT Token
-                await axios.post("http://localhost:5000/jwt", { email: user.email }, { withCredentials: true });
+                await axios.post("https://study-mate-server-nine.vercel.app/jwt", { email: user.email }, { withCredentials: true });
 
                 // Send to DB if needed
                 const userInfo = {
@@ -32,12 +32,12 @@ const GoogleLogin = () => {
                     isVerified: true,
                 };
 
-                await axios.post("http://localhost:5000/users", userInfo);
+                await axios.post("https://study-mate-server-nine.vercel.app/users", userInfo);
                 Swal.fire("Welcome!", "Google login successful", "success");
                 navigate(from);
             })
             .catch((err) => {
-                console.log(err.message);
+                // console.log(err.message);
                 Swal.fire("Error", err.message, "error");
             });
     };

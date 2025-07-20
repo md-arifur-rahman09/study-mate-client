@@ -16,7 +16,7 @@ const AllStudyMaterials = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/booked-sessions/${user.email}`,{
+        .get(`https://study-mate-server-nine.vercel.app/booked-sessions/${user.email}`,{
           withCredentials:true
         })
         .then((res) => {
@@ -29,7 +29,7 @@ const AllStudyMaterials = () => {
 
   useEffect(() => {
     if (selectedSessionId) {
-      axios.get(`http://localhost:5000/materials/session/${selectedSessionId}`)
+      axios.get(`https://study-mate-server-nine.vercel.app/materials/session/${selectedSessionId}`)
         .then((res) => setMaterials(res.data || []));
     }
   }, [selectedSessionId]);

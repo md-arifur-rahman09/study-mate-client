@@ -16,7 +16,7 @@ const StudySession = () => {
   const { data: sessions = [], isLoading } = useQuery({
     queryKey: ["approved-sessions"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/study-session/approved");
+      const res = await axios.get("https://study-mate-server-nine.vercel.app/study-session/approved");
       return res.data;
     },
   });

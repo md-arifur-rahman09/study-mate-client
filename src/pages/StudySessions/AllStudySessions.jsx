@@ -23,7 +23,7 @@ const AllStudySessions = () => {
     queryKey: ["approved-sessions", currentPage],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/study-sessions/approved?page=${currentPage}&limit=${itemsPerPage}`
+        `https://study-mate-server-nine.vercel.app/study-sessions/approved?page=${currentPage}&limit=${itemsPerPage}`
       );
       return res.data;
     },

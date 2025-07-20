@@ -16,16 +16,16 @@ const ManageNotes = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/notes/${user.email}`, {
+      axios.get(`https://study-mate-server-nine.vercel.app/notes/${user.email}`, {
 withCredentials: true
       })
       .then((res) => {
         setNotes(res.data);
         setLoading(false);
       })
-      .catch(error => {
-          console.log(error)
-        })
+      // .catch(error => {
+      //     console.log(error)
+      //   })
 }
   }, [user]);
 
@@ -39,24 +39,24 @@ const handleDelete = async (id) => {
   });
 
   if (confirm.isConfirmed) {
-    axios.delete(`http://localhost:5000/notes/${id}`)
+    axios.delete(`https://study-mate-server-nine.vercel.app/notes/${id}`)
       .then((res) => {
         if (res.data.deletedCount > 0) {
           setNotes(notes.filter((note) => note._id !== id));
           Swal.fire("Deleted!", "Your note has been deleted.", "success");
         }
       })
-      .catch(error => {
-        console.log(error);
+      // .catch(error => {
+      //   console.log(error);
 
-      })
+      // })
   }
 };
 
 const handleUpdate = () => {
   const { _id, title, description } = selectedNote;
   axios
-    .put(`http://localhost:5000/notes/${_id}`, {
+    .put(`https://study-mate-server-nine.vercel.app/notes/${_id}`, {
       title,
       description,
       updatedAt: new Date(),

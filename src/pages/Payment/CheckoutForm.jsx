@@ -18,7 +18,7 @@ const CheckoutForm = ({ session }) => {
   useEffect(() => {
     if (session.registrationFee > 0) {
       axios
-        .post("http://localhost:5000/create-payment-intent", {
+        .post("https://study-mate-server-nine.vercel.app/create-payment-intent", {
           amount: session.registrationFee,
         })
         .then((res) => {
@@ -76,9 +76,9 @@ const CheckoutForm = ({ session }) => {
       };
 
       try {
-        const res = await axios.post("http://localhost:5000/booked-sessions", bookingData);
+        const res = await axios.post("https://study-mate-server-nine.vercel.app/booked-sessions", bookingData);
         if (res.data.insertedId || res.data.success) {
-          await axios.post("http://localhost:5000/payments", paymentData);
+          await axios.post("https://study-mate-server-nine.vercel.app/payments", paymentData);
           Swal.fire("Payment Successful", "Session booked successfully", "success");
           navigate("/dashboard/my-booked-sessions");
         }

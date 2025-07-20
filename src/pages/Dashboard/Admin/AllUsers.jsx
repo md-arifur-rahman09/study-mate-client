@@ -15,7 +15,7 @@ const AllUsers = () => {
   const { data: users = [], isLoading, refetch } = useQuery({
     queryKey: ["all-users"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/users",
+      const res = await axios.get("https://study-mate-server-nine.vercel.app/users",
         { withCredentials: true });
       return res.data;
     },
@@ -43,7 +43,7 @@ const AllUsers = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await axios.patch(`http://localhost:5000/users/role/${userId}`, {
+      const res = await axios.patch(`https://study-mate-server-nine.vercel.app/users/role/${userId}`, {
         role: newRole,
       });
 

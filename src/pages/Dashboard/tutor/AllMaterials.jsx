@@ -17,13 +17,14 @@ const AllMaterials = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/material?tutorEmail=${user.email}`,{
+        .get(`https://study-mate-server-nine.vercel.app/material?tutorEmail=${user.email}`,{
           withCredentials: true
         })
         .then((res) => setMaterials(res.data))
-        .catch(error=> {
-          console.log(error)
-        })
+        // .catch(error=> {
+        //   console.log(error);
+           
+        // })
     }
   }, [user]);
 
@@ -36,7 +37,7 @@ const AllMaterials = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/materials/${id}`).then((res) => {
+        axios.delete(`https://study-mate-server-nine.vercel.app/materials/${id}`).then((res) => {
           if (res.data.success) {
             setMaterials(materials.filter((item) => item._id !== id));
             Swal.fire("Deleted!", "Material has been deleted.", "success");
@@ -57,7 +58,7 @@ const AllMaterials = () => {
 
   const onSubmit = (data) => {
     axios
-      .patch(`http://localhost:5000/materials/${editingMaterial._id}`, {
+      .patch(`https://study-mate-server-nine.vercel.app/materials/${editingMaterial._id}`, {
         title: data.title,
         driveLink: data.driveLink,
         updatedAt: new Date().toISOString(),

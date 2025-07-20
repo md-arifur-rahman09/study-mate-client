@@ -11,16 +11,14 @@ const AdminViewMaterials = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/materials", {
+    axios.get("https://study-mate-server-nine.vercel.app/materials", {
       withCredentials :true
     })
     .then((res) => {
       setMaterials(res.data || []);
       setLoading(false);
     })
-    .catch(error=> {
-      console.log(error)
-    })
+  
   }, []);
 
   const handleDelete = (id) => {
@@ -32,7 +30,7 @@ const AdminViewMaterials = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/materials/${id}`).then((res) => {
+        axios.delete(`https://study-mate-server-nine.vercel.app/materials/${id}`).then((res) => {
           if (res.data.success || res.data.deletedCount > 0) {
             Swal.fire("Deleted!", "The material has been deleted.", "success");
             setMaterials((prev) => prev.filter((item) => item._id !== id));

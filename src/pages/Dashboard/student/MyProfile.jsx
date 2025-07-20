@@ -18,8 +18,8 @@ const MyProfile = () => {
         enabled: !loading && !!user?.email,
         queryKey: ["user-info", user?.email],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/users/role/${user.email}`);
-            const extraRes = await axios.get(`http://localhost:5000/users/details/${user.email}`);
+            const res = await axios.get(`https://study-mate-server-nine.vercel.app/users/role/${user.email}`);
+            const extraRes = await axios.get(`https://study-mate-server-nine.vercel.app/users/details/${user.email}`);
             return {
                 ...extraRes.data,
                 role: res.data.role,

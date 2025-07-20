@@ -21,7 +21,7 @@ const StudySessionList = () => {
   const { data: sessions = [], refetch, isLoading } = useQuery({
     queryKey: ["admin-all-sessions"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/study-sessions", {
+      const res = await axios.get("https://study-mate-server-nine.vercel.app/study-sessions", {
         withCredentials: true,
       });
       return res.data;
@@ -32,7 +32,7 @@ const StudySessionList = () => {
     e.preventDefault();
     try {
       const res = await axios.patch(
-        `http://localhost:5000/study-sessions/approve/${approveModal._id}`,
+        `https://study-mate-server-nine.vercel.app/study-sessions/approve/${approveModal._id}`,
         { registrationFee: parseFloat(amount) },
         { withCredentials: true }
       );
@@ -56,7 +56,7 @@ const StudySessionList = () => {
         rejectionReason: reason,
         feedback,
       };
-      const res = await axios.post("http://localhost:5000/rejected-sessions", rejectionData);
+      const res = await axios.post("https://study-mate-server-nine.vercel.app/rejected-sessions", rejectionData);
       if (res.data.success) {
         Swal.fire("Rejected", "Session rejected", "success");
         refetch();
@@ -79,7 +79,7 @@ const StudySessionList = () => {
     if (!confirm.isConfirmed) return;
 
     try {
-      const res = await axios.delete(`http://localhost:5000/study-sessions/${id}`, {
+      const res = await axios.delete(`https://study-mate-server-nine.vercel.app/study-sessions/${id}`, {
         withCredentials: true,
       });
       if (res.data.deletedCount > 0) {

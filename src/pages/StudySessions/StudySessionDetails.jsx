@@ -20,9 +20,9 @@ const StudySessionDetails = () => {
     useEffect(() => {
         if (!user?.email) return;
 
-        axios.get(`http://localhost:5000/users/role/${user.email}`)
+        axios.get(`https://study-mate-server-nine.vercel.app/users/role/${user.email}`)
             .then(res => {
-                console.log("User Role:", res.data.role);
+                // console.log("User Role:", res.data.role);
                 setUserRole(res.data.role);
             })
             .catch(() => setUserRole(null));
@@ -33,7 +33,7 @@ const StudySessionDetails = () => {
         queryKey: ['already-booked', user?.email, id],
         enabled: !!user?.email && !!id,
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/booked-sessions/check?studentEmail=${user.email}&sessionId=${id}`);
+            const res = await axios.get(`https://study-mate-server-nine.vercel.app/booked-sessions/check?studentEmail=${user.email}&sessionId=${id}`);
             return res.data;
         }
     });
@@ -42,7 +42,7 @@ const StudySessionDetails = () => {
     const { data: session = {}, isLoading } = useQuery({
         queryKey: ['study-session', id],
         queryFn: async () => {
-            const res = await axios.get(`http://localhost:5000/study-sessions/${id}`);
+            const res = await axios.get(`https://study-mate-server-nine.vercel.app/study-sessions/${id}`);
             return res.data;
         }
     });
@@ -50,7 +50,7 @@ const StudySessionDetails = () => {
     // ✅ Step 4: Get reviews
     useEffect(() => {
         if (session?._id) {
-            axios.get(`http://localhost:5000/reviews/${session._id}`)
+            axios.get(`https://study-mate-server-nine.vercel.app/reviews/${session._id}`)
                 .then(res => setReviews(res.data))
                 .catch(() => setReviews([]));
         }
@@ -118,7 +118,7 @@ const StudySessionDetails = () => {
         };
 
         try {
-            const res = await axios.post("http://localhost:5000/booked-sessions", bookingData);
+            const res = await axios.post("https://study-mate-server-nine.vercel.app/booked-sessions", bookingData);
             if (res.data.success || res.data.insertedId) {
                 Swal.fire("Booked!", "Session booked successfully", "success");
                 refetchBooking();
