@@ -5,7 +5,10 @@ import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import { useEffect, useState } from "react";
 
+import useTitle from "../../hooks/useTitle";
+
 const StudySessionDetails = () => {
+    useTitle("Session Details ")
     const { id } = useParams();
     const { user, loading } = useAuth();
     const navigate = useNavigate();

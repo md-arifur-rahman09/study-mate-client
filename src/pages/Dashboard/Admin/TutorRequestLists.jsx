@@ -3,13 +3,16 @@ import axios from "axios";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import useTitle from "../../../hooks/useTitle";
+import Loading from "../../Loading/Loading";
 
 const TutorRequestList = () => {
     useTitle("Tutor Request List")
     const { data: requests = [], refetch, isLoading } = useQuery({
         queryKey: ['tutor-requests'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/tutor-requests?status=pending");
+            const res = await axios.get("http://localhost:5000/tutor-requests?status=pending", {
+                withCredentials: true
+            });
             return res.data;
         }
     });
@@ -38,7 +41,10 @@ const TutorRequestList = () => {
         }
     };
 
-    if (isLoading) return <p className="text-center">Loading...</p>;
+    if (isLoading) return <Loading></Loading>;
+    if(requests.length===0){
+        return <h2 className="text-2xl font-semibold text-center">There is no request right now !</h2>
+    }
 
     return (
         <div >

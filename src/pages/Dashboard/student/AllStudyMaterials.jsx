@@ -16,7 +16,9 @@ const AllStudyMaterials = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/booked-sessions/${user.email}`)
+        .get(`http://localhost:5000/booked-sessions/${user.email}`,{
+          withCredentials:true
+        })
         .then((res) => {
           setBookedSessions(res.data || []);
           setLoading(false);

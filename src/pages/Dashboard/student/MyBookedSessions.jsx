@@ -20,10 +20,12 @@ const MyBookingSessions = () => {
 
   useEffect(() => {
     if (user?.email) {
-      setLoading(true); // ✅ Ensure loading starts before API call
+      setLoading(true); 
       axios
         .get(
-          `http://localhost:5000/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`
+          `http://localhost:5000/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`, {
+            withCredentials: true
+          }
         )
         .then((res) => {
           setBookedSessions(res.data.data);

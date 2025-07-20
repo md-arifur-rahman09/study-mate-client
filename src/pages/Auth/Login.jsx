@@ -12,7 +12,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location?.state || "/";
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const Login = () => {
       .then(async () => {
         await axios.post("http://localhost:5000/jwt", { email }, { withCredentials: true });
         Swal.fire("Welcome!", "Login successful", "success");
-        navigate(from);
+        navigate(location.state || '/');
       })
       .catch((err) => {
         Swal.fire("Error!", err.message, "error");
@@ -76,7 +76,7 @@ const Login = () => {
 
         <div className="text-center text-sm">
           Don’t have an account?{" "}
-          <Link state={from} to="/register" className="text-primary font-semibold hover:underline">
+          <Link  to="/register" className="text-primary font-semibold hover:underline">
             Register here
           </Link>
         </div>

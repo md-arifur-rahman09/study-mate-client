@@ -20,7 +20,9 @@ const UploadMaterials = () => {
  
 
   useEffect(()=> {
-    axios.get(`http://localhost:5000/study-session/approved?tutorEmail=${user?.email}`)
+    axios.get(`http://localhost:5000/study-session/approved?tutorEmail=${user?.email}`, {
+      withCredentials: true
+    })
     .then(res=> {
       console.log(res.data);
       setSessions(res.data)

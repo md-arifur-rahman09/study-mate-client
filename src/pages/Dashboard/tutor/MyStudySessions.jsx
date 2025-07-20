@@ -45,7 +45,7 @@ const MyStudySessions = () => {
 
     if (isLoading) return <p>Loading...</p>;
     if (sessions.length === 0) {
-        return <h2 className="text-center font-semibold text-3xl mt-10">No Approved Study sessions yet!</h2>;
+        return <h2 className="text-center font-semibold text-3xl ">No Approved Study sessions yet!</h2>;
     }
 
 

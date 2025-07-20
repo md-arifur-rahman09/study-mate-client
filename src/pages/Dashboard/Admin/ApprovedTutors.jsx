@@ -2,13 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useTitle from "../../../hooks/useTitle";
+import Loading from "../../Loading/Loading";
 
 const ApprovedTutors = () => {
     useTitle("Approved Tutors")
     const { data: tutors = [], isPending, error, refetch } = useQuery({
         queryKey: ['approved-tutors'],
         queryFn: async () => {
-            const res = await axios.get("http://localhost:5000/approved-tutors");
+            const res = await axios.get("http://localhost:5000/approved-tutors", {
+                withCredentials: true
+            });
             return res.data;
         }
     });
@@ -35,7 +38,7 @@ const ApprovedTutors = () => {
     };
 
 
-    if (isPending) return <p className="text-center py-10">Loading...</p>;
+    if (isPending) return <Loading></Loading>;
     if (error) return <p className="text-center text-red-500 py-10">Error loading tutors</p>;
     if (tutors.length === 0) {
         return <h2 className="text-center text-3xl font-semibold  mt-10">No Tutors found.</h2>

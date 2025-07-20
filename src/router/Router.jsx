@@ -126,14 +126,15 @@ export const router = createBrowserRouter([
                 Component:PaymentPage
             },
             //only admin routes
+              {
+                path: 'all-users',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
             {
                 path: 'all-study-sessions',
                 element: <AdminRoute><StudySessionList></StudySessionList></AdminRoute>
             },
-            {
-                path: 'all-users',
-                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-            },
+          
             {
                 path: 'tutor-request-lists',
                 element: <AdminRoute><TutorRequestList></TutorRequestList></AdminRoute>

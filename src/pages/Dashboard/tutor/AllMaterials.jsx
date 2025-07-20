@@ -17,8 +17,13 @@ const AllMaterials = () => {
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(`http://localhost:5000/materials?tutorEmail=${user.email}`)
-        .then((res) => setMaterials(res.data));
+        .get(`http://localhost:5000/material?tutorEmail=${user.email}`,{
+          withCredentials: true
+        })
+        .then((res) => setMaterials(res.data))
+        .catch(error=> {
+          console.log(error)
+        })
     }
   }, [user]);
 

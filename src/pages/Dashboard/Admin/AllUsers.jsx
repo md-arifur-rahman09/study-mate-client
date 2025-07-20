@@ -4,15 +4,19 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FaSearch } from "react-icons/fa";
 import useTitle from "../../../hooks/useTitle";
+import useAuth from "../../../hooks/useAuth";
+import Loading from "../../Loading/Loading";
 
 const AllUsers = () => {
-  useTitle('All Users')
+  useTitle('All Users');
+  const { user } = useAuth();
   const [searchTerm, setSearchTerm] = useState("");
 
   const { data: users = [], isLoading, refetch } = useQuery({
     queryKey: ["all-users"],
     queryFn: async () => {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("http://localhost:5000/users",
+        { withCredentials: true });
       return res.data;
     },
   });
@@ -52,7 +56,7 @@ const AllUsers = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="p-4 max-w-6xl mx-auto">

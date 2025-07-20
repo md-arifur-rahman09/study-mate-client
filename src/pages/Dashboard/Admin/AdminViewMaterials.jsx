@@ -11,10 +11,16 @@ const AdminViewMaterials = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/materials").then((res) => {
+    axios.get("http://localhost:5000/materials", {
+      withCredentials :true
+    })
+    .then((res) => {
       setMaterials(res.data || []);
       setLoading(false);
-    });
+    })
+    .catch(error=> {
+      console.log(error)
+    })
   }, []);
 
   const handleDelete = (id) => {
