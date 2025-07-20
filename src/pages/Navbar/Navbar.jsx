@@ -1,9 +1,23 @@
 import { Link, NavLink } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Navbar = () => {
     const { user, logout } = useAuth();
+     const [userRole, setUserRole] = useState(null);
+
+      useEffect(() => {
+        if (!user?.email) return;
+
+        axios.get(`https://study-mate-server-nine.vercel.app/users/role/${user.email}`)
+            .then(res => {
+                // console.log("User Role:", res.data.role);
+                setUserRole(res.data.role);
+            })
+            .catch(() => setUserRole(null));
+    }, [user?.email]);
 
     const handleLogout = () => {
         logout()
@@ -20,7 +34,7 @@ const Navbar = () => {
             <li><NavLink to="/" className="hover:text-primary">Home</NavLink></li>
             <li><NavLink to="/all-study-sessions" className="hover:text-primary">All Sessions</NavLink></li>
             <li><NavLink to="/all-tutors" className="hover:text-primary">All Tutors</NavLink></li>
-            <li><NavLink to="/applyTutor" className="hover:text-primary">Apply Tutor</NavLink></li>
+            {userRole === 'student' && <li><NavLink to="/applyTutor" className="hover:text-primary">Apply Tutor</NavLink></li>}
             {user && <li><NavLink to="/dashboard" className="hover:text-primary">Dashboard</NavLink></li>}
         </>
     );

@@ -133,10 +133,7 @@ const StudySessionDetails = () => {
         }
     };
 
-    // // ✅ Global Loading
-    // if (loading || isLoading || userRole === null) {
-    //     return <p className="text-center py-10">Loading...</p>;
-    // }
+  
 
     // ✅ Main UI
     return (

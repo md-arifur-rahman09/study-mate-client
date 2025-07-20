@@ -6,6 +6,7 @@ import { FiEdit } from "react-icons/fi";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import UpdateSessionForm from "./UpdateSessionForm";
 import useTitle from "../../../hooks/useTitle";
+import Loading from "../../Loading/Loading";
 
 const StudySessionList = () => {
   useTitle("Study Sessions List");
@@ -91,7 +92,7 @@ const StudySessionList = () => {
     }
   };
 
-  if (isLoading) return <p className="p-4">Loading...</p>;
+  if (isLoading) return <Loading></Loading>;
 
   return (
     <div className="p-4">

@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import CheckoutForm from "./CheckoutForm";
+import Loading from "../Loading/Loading";
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PK);
 
@@ -21,7 +22,7 @@ queryFn: async () => {
 },
 });
 
-if (isLoading) return <p className="text-center py-10">Loading...</p>;
+if (isLoading) return <Loading></Loading>;
 
 return (
 <div className="max-w-xl mx-auto p-6 text-center">

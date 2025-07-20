@@ -10,6 +10,7 @@ import {
   FaBookOpen,
   FaCalendarAlt,
 } from "react-icons/fa";
+import Loading from "../Loading/Loading";
 
 
 const StudySession = () => {
@@ -47,11 +48,11 @@ const StudySession = () => {
     }
   };
 
-  if (isLoading) return <p className="text-center py-10 text-lg text-gray-600">🔄 Loading...</p>;
+  if (isLoading) return <Loading ></Loading>;
 
   return (
     <div className="max-w-6xl mx-auto ">
-      <h2 className="text-4xl text-primary font-bold text-center my-10 flex items-center justify-center gap-2">
+      <h2 className="text-3xl md:text-4xl text-primary font-bold text-center my-10 flex items-center justify-center gap-2">
          Current Study Sessions
       </h2>
 
