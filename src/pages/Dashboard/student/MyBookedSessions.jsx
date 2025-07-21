@@ -24,7 +24,7 @@ const MyBookingSessions = () => {
       axios
         .get(
           `https://study-mate-server-nine.vercel.app/booked-sessions/user/${user.email}?page=${currentPage}&limit=${limit}`, {
-            withCredentials: true
+            withCredentials:true
           }
         )
         .then((res) => {
