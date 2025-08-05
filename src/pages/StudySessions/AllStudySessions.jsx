@@ -70,7 +70,7 @@ const AllStudySessions = () => {
     );
 
   return (
-    <div>
+    <div className="max-w-6xl mx-auto">
       <h2 className="text-center my-10 text-4xl font-extrabold text-primary flex items-center justify-center gap-2">
        All Study Sessions
       </h2>

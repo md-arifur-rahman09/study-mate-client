@@ -48,7 +48,7 @@ const MyProfile = () => {
 
             <div className="mt-6 text-sm text-gray-700 space-y-1">
                 <p><strong>Account Created:</strong> {new Date(createdAt).toLocaleString()}</p>
-                <p><strong>Last Login:</strong> {new Date(lastLogin).toLocaleString()}</p>
+                {/* <p><strong>Last Login:</strong> {new Date(lastLogin).toLocaleString()}</p> */}
                 <p><strong>Status:</strong> {status}</p>
             </div>
         </div>

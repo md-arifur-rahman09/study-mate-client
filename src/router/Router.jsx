@@ -102,6 +102,11 @@ export const router = createBrowserRouter([
         children: [
             // only student routes
             {
+                index: true,
+                Component: MyProfile
+                
+            },
+            {
                 path: 'myProfile',
                 Component: MyProfile
             },
