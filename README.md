@@ -16,6 +16,7 @@ Secure Firebase Authentication + JWT Security.
 Stripe payment for paid sessions.
 
 
+
 **🛠 Tech Stack (Client Side)**
 
 React + Vite – Frontend Framework
@@ -31,6 +32,7 @@ Firebase Authentication – Login/Register (Email & Google)
 SweetAlert2 – Notifications
 
 
+
 **✨ Core Features (Frontend)**
 
 
@@ -43,6 +45,7 @@ Students can request to become a Tutor.
 Admin decides approval or rejection of tutor requests.
 
 Role-based dashboards ensure each user sees features relevant to them.
+
 
 
 **🖥️ Dashboards by Role**
@@ -210,4 +213,5 @@ Certificate generation for completed sessions
 **👨‍💻 Developer**
 
 Name: Md Arifur Rahman
+
 Role: MERN Stack Developer
