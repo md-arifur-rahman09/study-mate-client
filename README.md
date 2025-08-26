@@ -112,7 +112,14 @@ Review all study materials uploaded by tutors.
 
 Delete materials if irrelevant or low-quality.
 
-📚 Study Sessions
+**🔑 Admin Login Credentials**
+
+To access the Admin Dashboard, use the following credentials:
+Email: walid@gmal.com
+Password: Asdfgh
+
+
+**📚 Study Sessions**
 
 All Sessions Page → Displays all study sessions as cards.
 
