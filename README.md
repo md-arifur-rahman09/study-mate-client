@@ -1,9 +1,9 @@
-📘 StudyMate – Client Side (Frontend)
+**📘 StudyMate – Client Side (Frontend)**
 
 StudyMate is a React-based web application, where students and tutors collaborate through study sessions.
 This is the client-side (frontend) of the project.
 
-Overview
+**Overview**
 
 Students can book sessions, manage personal notes, and access study materials from their booked sessions.
 
@@ -15,7 +15,7 @@ Secure Firebase Authentication + JWT Security.
 
 Stripe payment for paid sessions.
 
-🛠 Tech Stack (Client Side)
+**🛠 Tech Stack (Client Side)**
 
 React + Vite – Frontend Framework
 
@@ -29,8 +29,9 @@ Firebase Authentication – Login/Register (Email & Google)
 
 SweetAlert2 – Notifications
 
-✨ Core Features (Frontend)
-🔐 Authentication & Roles
+**✨ Core Features (Frontend)**
+
+**🔐 Authentication & Roles**
 
 New users register as Student by default.
 
@@ -40,8 +41,9 @@ Admin decides approval or rejection of tutor requests.
 
 Role-based dashboards ensure each user sees features relevant to them.
 
-🖥️ Dashboards by Role
-🎓 Student Dashboard
+**🖥️ Dashboards by Role**
+
+**🎓 Student Dashboard**
 
 My Booked Sessions → View all sessions they have booked.
 
@@ -57,7 +59,7 @@ Edit notes.
 
 Delete notes.
 
-📘 Tutor Dashboard
+**📘 Tutor Dashboard**
 
 Create Study Sessions with full details (title, description, dates, fee, etc.).
 
@@ -79,7 +81,7 @@ Tutors can update session details.
 
 Tutors can delete their own sessions if needed.
 
-🛠 Admin Dashboard
+**🛠 Admin Dashboard**
 
 User Management:
 
@@ -119,44 +121,76 @@ Reviews & Average Rating
 
 "Book Now" / "Already Booked" button
 
-📂 Folder Structure (Client)
+**📂 Folder Structure (Client)**
+
 client/
+
 │
+
 ├── public/ 
+
 │
+
 ├── src/
+
 │   ├── components/   # Reusable UI Components
+
 │   ├── hooks/        # Custom Hooks (useAuth, useAxios, etc.)
+
 │   ├── layouts/      # Dashboard / Main Layouts
+
 │   ├── pages/        # All Pages (Home, Login, Dashboard etc.)
+
 │   ├── providers/    # AuthProvider.jsx (Firebase + Context)
+
 │   ├── router/       # All Routes
+
 │   ├── App.jsx
+
 │   └── main.jsx
+
 │
+
 ├── .env              # Firebase Config
+
 ├── package.json
+
 └── tailwind.config.js
 
 
-Installation & Setup (Client Side)
-1️⃣ Clone the Repository
+
+**Installation & Setup (Client Side)**
+
+**1️⃣ Clone the Repository**
+
 git clone https://github.com/md-arifur-rahman09/study-mate-client
 cd study-mate-client
-2️⃣ Install Dependencies
+
+**2️⃣ Install Dependencies**
+
 npm install
-3️⃣ Environment Variables
+
+**3️⃣ Environment Variables**
+
 Create a .env file in the client folder with your Firebase config:
+
 VITE_apiKey=your_firebase_api_key
+
 VITE_authDomain=your_firebase_authDomain
+
 VITE_projectId=your_firebase_projectId
+
 VITE_storageBucket=your_firebase_storageBucket
+
 VITE_messagingSenderId=your_firebase_messagingSenderId
+
 VITE_appId=your_firebase_appId
-4️⃣ Run the Project
+
+**4️⃣ Run the Project**
+
 npm run dev
 
-📌 Future Enhancements (Client Side)
+**📌 Future Enhancements (Client Side)**
 
 Advanced filters & search for study sessions
 
@@ -166,7 +200,7 @@ Progress tracking & analytics dashboard
 
 Certificate generation for completed sessions
 
-👨‍💻 Developer
+**👨‍💻 Developer**
 
 Name: Md Arifur Rahman
 Role: MERN Stack Developer
