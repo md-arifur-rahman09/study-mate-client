@@ -15,6 +15,7 @@ Secure Firebase Authentication + JWT Security.
 
 Stripe payment for paid sessions.
 
+
 **🛠 Tech Stack (Client Side)**
 
 React + Vite – Frontend Framework
@@ -29,7 +30,9 @@ Firebase Authentication – Login/Register (Email & Google)
 
 SweetAlert2 – Notifications
 
+
 **✨ Core Features (Frontend)**
+
 
 **🔐 Authentication & Roles**
 
@@ -40,6 +43,7 @@ Students can request to become a Tutor.
 Admin decides approval or rejection of tutor requests.
 
 Role-based dashboards ensure each user sees features relevant to them.
+
 
 **🖥️ Dashboards by Role**
 
@@ -58,6 +62,7 @@ View note details.
 Edit notes.
 
 Delete notes.
+
 
 **📘 Tutor Dashboard**
 
@@ -80,6 +85,7 @@ Update/Delete Sessions:
 Tutors can update session details.
 
 Tutors can delete their own sessions if needed.
+
 
 **🛠 Admin Dashboard**
 
@@ -120,6 +126,7 @@ Status (Pending / Ongoing / Closed)
 Reviews & Average Rating
 
 "Book Now" / "Already Booked" button
+
 
 **📂 Folder Structure (Client)**
 
