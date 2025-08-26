@@ -183,6 +183,7 @@ client/
 **1️⃣ Clone the Repository**
 
 git clone https://github.com/md-arifur-rahman09/study-mate-client
+
 cd study-mate-client
 
 **2️⃣ Install Dependencies**
